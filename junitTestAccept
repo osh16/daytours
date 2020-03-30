@@ -1,3 +1,9 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+
 public class TestRatingController {
 
 	@Test
@@ -12,5 +18,23 @@ public class TestRatingController {
 		RatingController testing = new RatingController();
 		String output = testing.setRating("Geggjuð ferð!");
 		assertTrue(50>output.length());
+	}
+	
+	@Before
+	public void testgetRatingfyrir(){
+		//Nær úr db rating fyrir einhvern tour
+	}
+	@After
+	public void testgetRatingeftir() {
+		//Skilar rating ur db
+	}
+	
+	
+	@Test
+	public void testgetRating() {
+		RatingController testing = new RatingController();
+		String output = testing.getRating();
+		assertEquals(output,"");
+		
 	}
 }
