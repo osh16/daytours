@@ -17,7 +17,7 @@ public class RatingController {
 	
 	public double getStar(double star) {
 		
-	if(star<5.0 || star > 0.0 ) {
+	if(star<=5.0 && star > 0.0 ) {
 		return star;
 	}
 	else
