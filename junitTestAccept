@@ -1,0 +1,16 @@
+public class TestRatingController {
+
+	@Test
+	public void testgetStar() {
+		RatingController testing = new RatingController();
+		double output = testing.getStar(5);
+		assertEquals(output,5);
+	}
+	
+	@Test
+	public void testsetRating() {
+		RatingController testing = new RatingController();
+		String output = testing.setRating("Geggjuð ferð!");
+		assertTrue(50>output.length());
+	}
+}
