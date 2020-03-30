@@ -32,6 +32,7 @@ public class TestRatingController {
 	
 	@Test
 	public void testgetRating() {
+		//ahugar hvort það komi út strengur
 		RatingController testing = new RatingController();
 		String output = testing.getRating();
 		assertEquals(output,"");
