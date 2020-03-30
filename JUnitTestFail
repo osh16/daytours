@@ -1,0 +1,22 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class TestRatingFail {
+
+	@Test
+	public void testgetStar() {
+		RatingController testing = new RatingController();
+		double output = testing.getStar(5.5);
+		assertEquals(output,5.5);
+	}
+	
+	@Test
+	public void testsetRating() {
+		RatingController testing = new RatingController();
+		String output = testing.setRating("Geggjuð ferð en svo skrifar einhver rating sem er með of mikinn texta og viljum ekki leyfa of mörg orð.........!");
+		assertTrue(50>output.length());
+	}
+	
+
+}
