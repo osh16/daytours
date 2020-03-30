@@ -1,8 +1,11 @@
+package testing;
+
 public class RatingController {
 
 	
-	public String getRating(String rating) {
-		//Skilar rating sem double tölu og einhvern texta
+	public String getRating() {
+		//Nær í rating úr db og skilum því rating
+		String rating = ""; //fáum þetta rating úr db 
 		return rating;
 	}
 	
@@ -10,7 +13,7 @@ public class RatingController {
 	public String setRating(String rating) {
 		//má ekki vera ákveðinn langur t.d
 		if(rating.length()>50) {
-			//kannski try catch?
+			return null;
 		}
 		return rating;
 	}
