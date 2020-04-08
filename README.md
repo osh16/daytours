@@ -9,8 +9,11 @@ Ef vesen er með gagnagrunn:
 `$ rm daytours.db; sqlite3 daytours.db ".read db.sql"`
 
 Til að nota skrár:
+
 `$ javac [java skrá]`
+
 `$ java -cp .:sqlite-jdbc-3.18.0.jar [java skrá]`
 
 Fyrir windows:
+
 `$ java -cp .;sqlite-jdbc-3.18.0.jar [java skrá]`
