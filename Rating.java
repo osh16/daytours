@@ -3,7 +3,7 @@ import java.util.Date;
 public class Rating {
     private int id;
     private String name;
-    private Date date;
+    private String date;
     private int stars;
     private String feedback;
 
@@ -15,7 +15,7 @@ public class Rating {
 	return name;
     }
 
-    public Date getDate() {
+    public String getDate() {
 	return date;
     }
 
@@ -27,7 +27,7 @@ public class Rating {
 	return feedback;
     }
 
-    public Rating(int id, String name, Date date, int stars, String feedback) {
+    public Rating(int id, String name, String date, int stars, String feedback) {
 	this.id = id;
 	this.name = name;
 	this.date = date;
