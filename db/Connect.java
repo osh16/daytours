@@ -26,8 +26,7 @@ try {
     // loka resultset
     rs.close();
 */
-
-public class Connect {
+    /*
     public static void connect(String query) throws Exception {
 	Connection conn = null;
 
@@ -50,11 +49,53 @@ public class Connect {
 	    }
 	}
     }
+    */
+
+public class Connect {
+    public static Connection connect() throws Exception {
+	Connection conn = null;
+
+	try {
+	    Class.forName("org.sqlite.JDBC");
+	    conn = DriverManager.getConnection("jdbc:sqlite:daytours.db");
+	} catch (Exception e) {
+	    e.printStackTrace();
+	} 
+	return conn;
+    }
+    
+    public static void insert(Connection conn, String query) {
+
+    }
+    
+    public static String retrieve(Connection conn, String query) {
+	String result = null;
+	try {
+	    PreparedStatement p = conn.prepareStatement(query);
+	    ResultSet rs = p.executeQuery();
+	    result = rs.getString(1);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return result;
+
+    }
+
+    public static void close(Connection conn) {
+	try {
+	    if (conn != null) {
+		conn.close();
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+    }
 
     public static void main(String[] args) {
 	try {
-	    connect("select avg(stars) as avg from ratings");
-
+	    Connection conn = connect();
+	    System.out.println(retrieve(conn, "select avg(stars) as avg from ratings"));
+	    close(conn);
 	} catch(Exception e) {
 	    e.printStackTrace();
 	}
