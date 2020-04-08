@@ -16,7 +16,6 @@ create table ratings (
 );
 
 
-/* dummy gogn fyrir junit profun */
 insert into ratings values(null,"vofflur a borgarnesi", date('2001-04-04'), 5, "aedislega gaman hehe");
 insert into ratings values(null,"vaendiskaup i keflavik", date('2019-12-24'), 4, "mjog flottar konur bara gaman sko");
 insert into ratings values(null,"sundferd a selfossi", date('2020-01-01'), 5, "gott ad fara i sund");
