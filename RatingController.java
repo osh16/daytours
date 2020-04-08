@@ -1,4 +1,5 @@
 import java.sql.ResultSet; 
+import java.sql.PreparedStatement;
 
 public class RatingController {
     Connect c = new Connect();
@@ -25,40 +26,51 @@ public class RatingController {
 		    );
 		}
 	    }
-	    c.close(); // loka tengingu
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
+	c.close(); // loka tengingu
 	return rating;
     }
     
-    public void insertRating() {
-
-    }
-
-    public void setRating(int id) {
-	//má ekki vera ákveðinn langur t.d
-	if(rating.length()>50) {
-		//kannski try catch?
+    public void addRating(Rating rating) {
+	try {
+	    c.connect();
+	    PreparedStatement p = c.conn.prepareStatement("insert into ratings values(?,?,?,?,?)");
+	    //p.setInt(1, rating.getId());
+	    p.setString(2, rating.getName());
+	    p.setString(3, rating.getDate());
+	    p.setInt(4, rating.getStars());
+	    p.setString(5, rating.getFeedback());
+	    p.executeUpdate();
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
-	return rating;
+	c.close();
     }
-    
-    // notum getStar() fra rating object
-
-    /*public double getStar(double star) {
-	if(star < 5.0 || star > 0.0 ) {
-	    return star;
-	} else {
-	    return (Double) null;
-	}
-    }*/
 
     // test
     public static void main(String[] args) {
 	RatingController rc = new RatingController();
+
+	// get 
 	Rating rating = rc.getRating(1);
+	if (rating != null) {
+	    System.out.println(rating.getId());
+	    System.out.println(rating.getName());
+	    System.out.println(rating.getDate());
+	    System.out.println(rating.getStars());
+	    System.out.println(rating.getFeedback());
+	}
+
+	// set
+	Rating rating2 = new Rating(0,"test","2010-10-10",5,"test");
+	System.out.println(rating2.getName());
+	rc.addRating(rating2);
+
+	// get 
+	rating = rc.getRating(-1);
 	if (rating != null) {
 	    System.out.println(rating.getId());
 	    System.out.println(rating.getName());

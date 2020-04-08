@@ -12,17 +12,18 @@ public class Connect {
 	} 
     }
     
-    public static void insert(String query) {
+    /*public static void insert(String query) {
+	try {
+	    PreparedStatement p = conn.prepareStatement(query);
+	}
 
-    }
+    }*/
     
     public static ResultSet retrieve(String query) {
 	ResultSet result = null;
 	try {
 	    PreparedStatement p = conn.prepareStatement(query);
-	    //ResultSet rs = p.executeQuery();
 	    result = p.executeQuery();
-	    //result = rs.getString(1);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
