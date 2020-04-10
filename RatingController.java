@@ -3,27 +3,39 @@ import java.sql.PreparedStatement;
 
 public class RatingController {
     Connect c = new Connect();
+    
+    public int getAvgRating(Tour tour) {
+	Rating[] rating = getRating(tour);
+	int avg = 0;
+	for (int i = 0; i < rating.length; i++) {
+	    avg += rating[i].getStars();
+	}
+	return avg/rating.length;
+    }
 
-    // tekur inn int id eins og er
-    // aetti ad taka inn Tour tour 
-    public Rating getRating(int id) {
-	Rating rating = null;
+    public Rating[] getRating(Tour tour) {
+	Rating[] rating = null;
 	ResultSet rs = null;
+	int i = 0;
 
 	try {
-	    String query = "select * from ratings where id = " + String.valueOf(id);
+	    String query = "select * from ratings where id = " + String.valueOf(tour.getId());
 	    c.connect();
 	    rs = c.retrieve(query);
 
 	    if (rs != null) {
 		while (rs.next()) {
-		    rating = new Rating(
-			rs.getInt(1),
-			rs.getString(2),
-			rs.getString(3),
-			rs.getInt(4),
-			rs.getString(5)
+		    rating[i] = new Rating(
+			rs.getInt(1),	    // id
+			rs.getString(2),    // name
+			rs.getString(3),    // date
+			rs.getInt(4),	    // stars
+			rs.getString(5),    // feedback
+			rs.getInt(6),	    // tour_id
+			rs.getInt(7)	    // passenger_id
 		    );
+
+		    i++;
 		}
 	    }
 	} catch (Exception e) {
@@ -34,15 +46,18 @@ public class RatingController {
 	return rating;
     }
     
-    public void addRating(Rating rating) {
+    // einkun fyrir tour, sem kemur fra einhverjum passenger
+    public void addRating(Rating rating, Tour tour, Passenger passenger) {
 	try {
 	    c.connect();
 	    PreparedStatement p = c.conn.prepareStatement("insert into ratings values(?,?,?,?,?)");
-	    //p.setInt(1, rating.getId());
+	    p.setInt(1, rating.getId());
 	    p.setString(2, rating.getName());
 	    p.setString(3, rating.getDate());
 	    p.setInt(4, rating.getStars());
 	    p.setString(5, rating.getFeedback());
+	    p.setInt(6, tour.getId());
+	    p.setInt(7, passenger.getId());
 	    p.executeUpdate();
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -52,7 +67,7 @@ public class RatingController {
 
     // test
     public static void main(String[] args) {
-	RatingController rc = new RatingController();
+	/*RatingController rc = new RatingController();
 
 	// get 
 	Rating rating = rc.getRating(1);
@@ -78,5 +93,6 @@ public class RatingController {
 	    System.out.println(rating.getStars());
 	    System.out.println(rating.getFeedback());
 	}
+	*/
     }
 }
