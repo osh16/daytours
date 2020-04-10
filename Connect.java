@@ -12,13 +12,6 @@ public class Connect {
 	} 
     }
     
-    /*public static void insert(String query) {
-	try {
-	    PreparedStatement p = conn.prepareStatement(query);
-	}
-
-    }*/
-    
     public static ResultSet retrieve(String query) {
 	ResultSet result = null;
 	try {
@@ -28,11 +21,9 @@ public class Connect {
 	    e.printStackTrace();
 	}
 	return result;
-
     }
 
     public static void close() {
-	
 	try {
 	    if (conn != null) {
 		conn.close();

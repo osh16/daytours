@@ -4,19 +4,27 @@ import java.sql.PreparedStatement;
 public class TourController {
     Connect c = new Connect();
 
-    // sækja tour eftir id
-    public Tour getTour(int id) {
+    public Tour getTourById(int id) {
+	String query = "select * from tours where id = " + String.valueOf(id); 
+	return getTour(query);
+    }
+
+    public Tour getTourByName(String name) {
+	String query = "select * from tours where name = " + name;
+	return getTour(query);
+    }
+
+    public Tour getTour(String query) {
 	Tour tour = null;
 	ResultSet rs = null;
 
 	try {
-	    String query = "select * from tour where id = " + String.valueOf(id);
 	    c.connect();
 	    rs = c.retrieve(query);
 
 	    if (rs != null) {
 		while (rs.next()) {
-		    rating = new Rating(
+		    tour = new Tour(
 			rs.getInt(1),
 			rs.getString(2),
 			rs.getString(3),
@@ -38,7 +46,7 @@ public class TourController {
 	try {
 	    c.connect();
 	    PreparedStatement p = c.conn.prepareStatement("insert into tours values(?,?,?,?,?,?)");
-	    //p.setInt(1, tour.getId());
+	    p.setInt(1, tour.getId());
 	    p.setString(2, tour.getName());
 	    p.setString(3, tour.getDate());
 	    p.setDouble(4, tour.getPrice());
