@@ -37,7 +37,7 @@ public class RatingController {
     public void addRating(Rating rating) {
 	try {
 	    c.connect();
-	    PreparedStatement p = c.conn.prepareStatement("insert into ratings values(?,?,?,?,?)");
+	    PreparedStatement p = c.conn.prepareStatement("insert into ratings values(?,?,?,?,?,?,?)");
 	    //p.setInt(1, rating.getId());
 	    p.setString(2, rating.getName());
 	    p.setString(3, rating.getDate());
