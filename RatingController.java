@@ -5,8 +5,9 @@ public class RatingController {
     Connect c = new Connect();
 
     public int getLatestId() {
-	String query = "select max(id) from ratings";
-	return getRating(query).getId();
+	String query = "select * from ratings where id = (select max(id) from ratings)";
+	Rating rating = getRating(query);
+	return rating.getId();
     }
 
     public int getCount(String query) {
@@ -134,6 +135,11 @@ public class RatingController {
 		System.out.println(ratings[i].getFeedback());
 	    }
 	}
+
+	// baeta vid rating
+	rating = new Rating(
 	
+
+
     }
 }

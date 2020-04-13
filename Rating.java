@@ -6,7 +6,8 @@ public class Rating {
     private String date;
     private int stars;
     private String feedback;
-
+    private int tourId;
+    private int passengerId;
 
     public int getId() {
 	return id;
@@ -28,11 +29,21 @@ public class Rating {
 	return feedback;
     }
 
-    public Rating(int id, String title, String date, int stars , String feedback) {
+    public int getTourId() {
+	return tourId;
+    }
+
+    public int getPassengerId() {
+	return passengerId;
+    }
+
+    public Rating(int id, String title, String date, int stars , String feedback, int tourId, int passengerId) {
 	this.id = id;
 	this.title = title;
 	this.date = date;
 	this.stars = stars;
 	this.feedback = feedback;
+	this.tourId = tourId;
+	this.passengerId = passengerId;
     }
 }
