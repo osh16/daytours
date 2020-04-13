@@ -1,0 +1,3 @@
+* Breytti name i ratings toflunni i title. Getum fengid nafn a tours i gegnum foreign key, en nennti ekki ad taka thennan dalk ut. Getum hugsad thad sem nafn a ratingi theirra.
+* Fjarlaegdi tour_id ur passenger
+* Baetti vid helling af drasli i database
