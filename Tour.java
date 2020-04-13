@@ -1,7 +1,7 @@
 import java.util.Date;
 
 public class Tour {
-    private int id;
+    private Integer id;
     private String name;
     private String date;// gaeti verid date type, skoda
     private double price;
@@ -11,7 +11,7 @@ public class Tour {
     //private Passenger[] passengers;
     //private Employee[] employees;
 
-    public int getId() {
+    public Integer getId() {
 	return id;
     }
 
@@ -35,7 +35,7 @@ public class Tour {
 	return location;
     }
 
-    public Tour(int id, String name, String date, double price, String type, String location) {
+    public Tour(Integer id, String name, String date, double price, String type, String location) {
 	this.id = id;
 	this.name = name;
 	this.date = date;
