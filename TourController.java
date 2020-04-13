@@ -5,8 +5,9 @@ public class TourController {
     Connect c = new Connect();
 
     public int getLatestId() {
-    	String id = "select max(id) from tours";
-    	return Integer.parseInt(id) + 1;
+    	String query = "select * from tours where id = (select max(id) from tours)";
+    	Tour tour = getTour(query);
+    	return tour.getId();
     }
 
     public Tour getTourById(int id) {
@@ -100,7 +101,7 @@ public class TourController {
 			System.out.println(tour.getLocation());
     	}
 
-    	int bla = tc.getLatestId();
-    	System.out.println("ID = " + bla);
+    	int maxId = tc.getLatestId();
+    	System.out.println("ID = " + maxId);
     }
 }

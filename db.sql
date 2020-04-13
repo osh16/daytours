@@ -24,6 +24,7 @@ create table passenger(
     name varchar(128),
     ssn varchar(10),
     age integer,
+    specialNeeds String,
     tour_id integer,
     foreign key(tour_id) references tours(id)
 );
