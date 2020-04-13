@@ -44,7 +44,9 @@ public class RatingController {
 			rs.getString(2),
 			rs.getString(3),
 			rs.getInt(4),
-			rs.getString(5)
+			rs.getString(5),
+			rs.getInt(6),
+			rs.getInt(7)
 		    );
 		    i++;
 		}
@@ -80,7 +82,9 @@ public class RatingController {
 			rs.getString(2),
 			rs.getString(3),
 			rs.getInt(4),
-			rs.getString(5)
+			rs.getString(5),
+			rs.getInt(6),
+			rs.getInt(7)
 		    );
 		}
 	    }
@@ -102,6 +106,8 @@ public class RatingController {
 	    p.setString(3, rating.getDate());
 	    p.setInt(4, rating.getStars());
 	    p.setString(5, rating.getFeedback());
+	    p.setInt(6, rating.getTourId());
+	    p.setInt(7, rating.getPassengerId());
 	    p.executeUpdate();
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -137,9 +143,12 @@ public class RatingController {
 	}
 
 	// baeta vid rating
-	rating = new Rating(
-	
-
-
+	System.out.println("=============baeta vid==================");
+	rating = new Rating(rc.getLatestId()+1, "hehe", "2010-10-10", 5, "rosa gott", 2,6);
+	rc.addRating(rating);	
+	rating = rc.getRatingById(rc.getLatestId());
+	System.out.println(rating.getId());
+	System.out.println(rating.getTitle());
+	System.out.println(rating.getFeedback());
     }
 }
