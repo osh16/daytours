@@ -4,6 +4,11 @@ import java.sql.PreparedStatement;
 public class TourController {
     Connect c = new Connect();
 
+    public int getLatestId() {
+    	String id = "select max(id) from tours";
+    	return Integer.parseInt(id) + 1;
+    }
+
     public Tour getTourById(int id) {
 		String query = "select * from tours where id = " + String.valueOf(id); 
 		return getTour(query);
@@ -66,33 +71,36 @@ public class TourController {
     	Tour tour = tc.getTourById(2);
     	if (tour != null) {
     		System.out.println(tour.getId());
-		System.out.println(tour.getName());
-		System.out.println(tour.getDate());
-		System.out.println(tour.getPrice());
-		System.out.println(tour.getType());
-		System.out.println(tour.getLocation());
+			System.out.println(tour.getName());
+			System.out.println(tour.getDate());
+			System.out.println(tour.getPrice());
+			System.out.println(tour.getType());
+			System.out.println(tour.getLocation());
     	}
 
     	tour = tc.getTourById(1);
     	if (tour != null) {
     		System.out.println(tour.getId());
-		System.out.println(tour.getName());
-		System.out.println(tour.getDate());
-		System.out.println(tour.getPrice());
-		System.out.println(tour.getType());
-		System.out.println(tour.getLocation());
+			System.out.println(tour.getName());
+			System.out.println(tour.getDate());
+			System.out.println(tour.getPrice());
+			System.out.println(tour.getType());
+			System.out.println(tour.getLocation());
     	}
-    	
-    	Tour newTour = new Tour(null,"allahu akhbar","2001-09-11",1.0,"hryðjuverkaferð","NY");
+
+    	Tour newTour = new Tour(6,"allahu akhbar","2001-09-11",1.0,"hryðjuverkaferð","NY");
     	tc.addTour(newTour);
     	tour = tc.getTourById(6);
     	if (tour != null) {
     		System.out.println(tour.getId());
-		System.out.println(tour.getName());
-		System.out.println(tour.getDate());
-		System.out.println(tour.getPrice());
-		System.out.println(tour.getType());
-		System.out.println(tour.getLocation());
+			System.out.println(tour.getName());
+			System.out.println(tour.getDate());
+			System.out.println(tour.getPrice());
+			System.out.println(tour.getType());
+			System.out.println(tour.getLocation());
     	}
+
+    	int bla = tc.getLatestId();
+    	System.out.println("ID = " + bla);
     }
 }
