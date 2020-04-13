@@ -161,7 +161,7 @@ public class Viðmót extends javax.swing.JFrame {
         jTable1.setVisible(true);
         try{
             Class.forName("org.sqlite.JDBC");
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:\\C:\\Users\\thors\\Desktop\\Booking.db");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:\\C:\\Users\\thors\\Desktop\\skoli\\2.vor\\Þrounhugbunadar\\daytours\\DayTours\\Booking.db");
             String query = "select * from bookingInfo";
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -175,7 +175,7 @@ public class Viðmót extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
           Class.forName("org.sqlite.JDBC");
-          Connection conn = DriverManager.getConnection("jdbc:sqlite:\\C:\\Users\\thors\\Desktop\\Booking.db");
+          Connection conn = DriverManager.getConnection("jdbc:sqlite:\\C:\\Users\\thors\\Desktop\\skoli\\2.vor\\Þrounhugbunadar\\daytours\\DayTours\\Booking.db");
           String query = "insert into bookingInfo (ID,Trip,paymentMethod,customerName) values (?,?,?,?)";
           PreparedStatement pst = conn.prepareStatement(query);
           pst.setString(1, jTextField1.getText());
