@@ -28,6 +28,13 @@ create table passenger(
     foreign key(tour_id) references tours(id)
 );
 
+create table Booking(
+    id integer primary key autoincrement not null,
+    Trip varchar(128),
+    Payment varchar(128)
+    CustomerName varchar(128)
+);
+
 
 /*insert into ratings values(null,"vofflur a borgarnesi", date('2001-04-04'), 5, "aedislega gaman hehe");
 insert into ratings values(null,"vaendiskaup i keflavik", date('2019-12-24'), 4, "mjog flottar konur bara gaman sko");
