@@ -19,6 +19,11 @@ public class TourController {
 		return getTour(query);
     }
 
+    public Tour getTourByDate(String date){
+    		String query = "select * from tours where tour_date = date";
+    		return getTour(query);
+    }
+
     public Tour getTour(String query) {
 		Tour tour = null;
 		ResultSet rs = null;
