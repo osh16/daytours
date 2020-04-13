@@ -71,21 +71,21 @@ public class TourController {
     	Tour tour = tc.getTourById(2);
     	if (tour != null) {
     		System.out.println(tour.getId());
-		    System.out.println(tour.getName());
-		    System.out.println(tour.getDate());
-		    System.out.println(tour.getPrice());
-		    System.out.println(tour.getType());
-		    System.out.println(tour.getLocation());
+			System.out.println(tour.getName());
+			System.out.println(tour.getDate());
+			System.out.println(tour.getPrice());
+			System.out.println(tour.getType());
+			System.out.println(tour.getLocation());
     	}
 
     	tour = tc.getTourById(1);
     	if (tour != null) {
     		System.out.println(tour.getId());
-		    System.out.println(tour.getName());
-		    System.out.println(tour.getDate());
-		    System.out.println(tour.getPrice());
-		    System.out.println(tour.getType());
-		    System.out.println(tour.getLocation());
+			System.out.println(tour.getName());
+			System.out.println(tour.getDate());
+			System.out.println(tour.getPrice());
+			System.out.println(tour.getType());
+			System.out.println(tour.getLocation());
     	}
 
     	Tour newTour = new Tour(6,"allahu akhbar","2001-09-11",1.0,"hryðjuverkaferð","NY");
@@ -93,11 +93,11 @@ public class TourController {
     	tour = tc.getTourById(6);
     	if (tour != null) {
     		System.out.println(tour.getId());
-		    System.out.println(tour.getName());
-		    System.out.println(tour.getDate());
-		    System.out.println(tour.getPrice());
-		    System.out.println(tour.getType());
-		    System.out.println(tour.getLocation());
+			System.out.println(tour.getName());
+			System.out.println(tour.getDate());
+			System.out.println(tour.getPrice());
+			System.out.println(tour.getType());
+			System.out.println(tour.getLocation());
     	}
 
     	int bla = tc.getLatestId();
