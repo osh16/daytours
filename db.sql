@@ -33,7 +33,7 @@ create table booking (
     id integer primary key autoincrement not null,
     trip varchar(128),
     payment varchar(128),
-    customer_name varchar(128)
+    customer_name varchar(128),
     amount integer,
     booking_date date
 );
@@ -57,3 +57,10 @@ insert into ratings values(null,"besta ferd lifs mins", date('NOW'), 5, "aedisle
 insert into ratings values(null,"ok mun fara aftur", date('NOW'), 4, "mjog flottar konur bara gaman sko", 2, 2);
 insert into ratings values(null,"hehe", date('NOW'), 5, "virkilega erfitt og ataknlegt", 3, 4);
 insert into ratings values(null,"konan ekki anaegd", date('NOW'), 1, "....", 4, 1);
+
+
+/* booking */
+insert into booking values(null,"vofflur a borgarnesi", "kreditkort", "steini skrufjarn", 10000, date('2010-10-8'));
+insert into booking values(null,"vaendiskaup i keflavik", "kreditkort", "nonni newcastle", 20000, date('2019-12-18'));
+insert into booking values(null,"chicago town orbylgjuferd i iceland", "kreditkort", "skari skiptilykill", 5000, date('2020-04-01'));
+insert into booking values(null,"fundur um malefni transfolks", "kreditkort", "astradur stefansson", 7000, date('2020-03-18'));
