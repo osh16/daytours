@@ -1,3 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package testdaytours;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -6,7 +20,7 @@ public class BookingController {
     Connect c = new Connect();
     
     
-    public Booking getBookingRecords(int ID){
+    public Booking getBookingById(int ID){
         Booking booking = null;
         ResultSet rs = null;
         
@@ -36,6 +50,36 @@ public class BookingController {
         return booking;
     }
     
+     public Booking getBookingByName(String name){
+        Booking booking = null;
+        ResultSet rs = null;
+
+        try{
+            String query = "select * from Booking where customername = " + String.valueOf(name);
+            c.connect();
+            rs = c.retrieve(query);
+
+            if(rs != null){
+                while(rs.next()){
+                    booking = new Booking(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getInt(5),
+                    rs.getString(6)
+                    ); 
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        c.close();
+        return booking;
+
+    }
+    
     public void setBookingRecords(Booking booking){
         try{
             c.connect();
@@ -56,7 +100,7 @@ public class BookingController {
     public static void main(String[] args){
         BookingController bc = new BookingController();
         
-        Booking booking = bc.getBookingRecords(1);
+        Booking booking = bc.getBookingById(1);
         if(booking != null){
             System.out.println(booking.getID());
             System.out.println(booking.getTrip());
@@ -71,7 +115,7 @@ public class BookingController {
         bc.setBookingRecords(booking2);
         
         
-        booking = bc.getBookingRecords(-1);
+        booking = bc.getBookingById(-1);
         if(booking != null){
             System.out.println(booking.getID());
             System.out.println(booking.getTrip());
@@ -81,8 +125,8 @@ public class BookingController {
             System.out.println(booking.getDate());
             
         }
-        
-        
+ 
         
     }
 }
+
