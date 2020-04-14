@@ -70,6 +70,37 @@ public class TourController {
     	return tours;
     }
 
+    public Tour[] getAllTours() {
+    	ResultSet rs = null;
+    	String query = "select * from tours";
+    	int toursLength = getCount(query);
+    	Tour[] tours = new Tour[toursLength];
+    	int i = 0;
+
+	    try {
+	    	c.connect();
+	    	rs = c.retrieve(query);
+
+	    	if (rs != null) {
+	    		while (rs.next()) {
+	    			tours[i] = new Tour(
+	    				rs.getInt(1),
+	    				rs.getString(2),
+	    				rs.getString(3),
+	    				rs.getDouble(4),
+	    				rs.getString(5),
+	    				rs.getString(6)
+	    			);
+	    			i++;
+	    		}
+	    	}
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    }
+
+    	return tours;
+    }
+
     public static void printTour(Tour tour) {
     	if (tour != null) {
     		System.out.println(tour.getId());
@@ -126,6 +157,17 @@ public class TourController {
 		c.close();
     }
 
+    public void deleteTourById(int id) {
+    	try {
+    		c.connect();
+    		String query = "delete from tours where id = " + id;
+    		PreparedStatement p = c.conn.prepareStatement(query);
+    		p.executeUpdate();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+
     // test
     public static void main(String[] args) {
     	TourController tc = new TourController();
@@ -133,12 +175,21 @@ public class TourController {
     	Tour tour = tc.getTourById(2);
     	printTour(tour);
 
+    	// System.out.println("_-------------");
+    	// tour = tc.getTourByName("vaendiskaup i keflavik");
+    	// printTour(tour);
+
     	Tour[] tours = tc.getCheapTours(30000);
+    	tours = tc.getAllTours();
+
+    	// tc.deleteTourById(1);
+
     	System.out.println();
     	for (int i = 0; i < tours.length; i++) {
     		printTour(tours[i]);
     	}
     	System.out.println();
+
    //  	tour = tc.getTourById(1);
    //  	if (tour != null) {
    //  		System.out.println(tour.getId());

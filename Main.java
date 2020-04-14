@@ -6,11 +6,32 @@ public class Main {
     public static void clearScreen() {  
 	System.out.print("\033[H\033[2J");  
 	System.out.flush();  
-
     }  
+
+    public static void userMenu() {
+
+    }
+
+    public static void staffMenu() {
+
+    }
+
+    public static void adminMenu() {
+
+    }
+
+    public static void printLogo() {
+	try {
+	    BufferedReader reader = new BufferedReader(new FileReader("logo.txt"));
+	    String line;
+	    while ((line = reader.readLine()) != null) {
+		System.out.println(line);
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+    }
     public static void printMenu() {
-	    System.out.println("Demo fyrir daytours kerfið");
-	    System.out.println("=================");
 	    System.out.println("1.  Get tour by id ");
 	    System.out.println("2.  Get tour by name ");
 	    System.out.println("3.  Get cheap tours ");
@@ -22,7 +43,6 @@ public class Main {
 	    System.out.println("9.  Add rating ");
 	    System.out.println("10. Add booking");
 	    System.out.println("q. exit");
-	    System.out.println("=================");
 	    System.out.println("Sladu inn menu item");
     }
     public static void main(String[] args) throws IOException {
@@ -31,13 +51,16 @@ public class Main {
 	RatingController rc = new RatingController();
 	TourController tc = new TourController();
 	Tour tour;
+	Rating rating;
 
 	boolean viktor = true;
 
 	while (viktor) {
 	    clearScreen();
+	    printLogo();
 	    printMenu();
 	    String menu = reader.readLine();
+	    clearScreen();
 	    switch (menu) {
 		case "1":
 		    System.out.println("Sláðu inn ID");
@@ -49,6 +72,7 @@ public class Main {
 		case "2":
 		    System.out.println("Sláðu inn nafn á túr");
 		    String name = reader.readLine();
+		    System.out.println(name);
 		    tour = tc.getTourByName(name);
 		    tc.printTour(tour);
 		    reader.readLine();
@@ -64,86 +88,39 @@ public class Main {
 		    }
 		    reader.readLine();
 		    break;
+	    /*System.out.println("5.  Get rating by ID ");
+	    System.out.println("6.  Get rating by name	");
+	    System.out.println("7.  Get booking ");
+	    System.out.println("8.  Add tour ");
+	    System.out.println("9.  Add rating ");
+	    System.out.println("10. Add booking");*/
 		case "4":
 		    System.out.println("Sláðu inn id á tour");
 		    id = Integer.parseInt(reader.readLine());
 		    tour = tc.getTourById(id);
+
 		    Rating[] ratings = rc.getRatingsByTour(tour);
+		    System.out.println("Nafn a túr: " + tour.getName().toUpperCase());
 		    System.out.println("=====");
 		    for (int i = 0; i < ratings.length; i++) {
 			rc.printRating(ratings[i]);
 			System.out.println("=====");
 		    }
+		    reader.readLine();
 		    break;
 		case "5":
+		    System.out.println("Sláðu inn ID");
+		    id = Integer.parseInt(reader.readLine());
+		    rating = rc.getRatingById(id);
+		    rc.printRating(rating);
+		    reader.readLine();
 		    break;
+		case "6":
 		case "q":
 		case "Q":
 		    viktor = false;
 		    break;
 	    }
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*RatingController rc = new RatingController();
-	TourController tc = new TourController();
-
-	System.out.println("=========== get rating by id ==========");
-	// skoda rating med id
-	Rating rating = rc.getRatingById(2);
-	System.out.println(rating.getId());
-	System.out.println(rating.getTitle());
-	System.out.println(rating.getFeedback());
-
-
-	System.out.println("=========== get rating by tour ==========");
-	// skoda ratings utfra tour
-	Tour tour = tc.getTourById(2);
-	rc.getRatingsByTour(tour);
-	Rating[] ratings = rc.getRatingsByTour(tour);
-
-	if (ratings != null) {
-	    for (int i = 0; i < ratings.length; i++) {
-		System.out.println(ratings[i].getId());
-		System.out.println(ratings[i].getTitle());
-		System.out.println(ratings[i].getFeedback());
-	    }
-	}
-
-	// baeta vid rating
-	System.out.println("=============baeta vid==================");
-	rating = new Rating(rc.getLatestId()+1, "hehe", "2010-10-10", 5, "rosa gott", 2,6);
-	rc.addRating(rating);	
-	rating = rc.getRatingById(rc.getLatestId());
-	System.out.println(rating.getId());
-	System.out.println(rating.getTitle());
-	System.out.println(rating.getFeedback());*/
     }
 }
