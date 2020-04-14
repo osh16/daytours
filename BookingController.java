@@ -5,35 +5,48 @@ public class BookingController {
     Connect c = new Connect();
     
     
-    public Booking getBookingRecords(int ID){
+    public Booking getBookingRecordsById(int ID){
+        String query ="select * from booking where id = "+ID;
+        return getBooking(query);
+    }
+    
+    public Booking getBookingByName(String name){
+        String query ="select * from booking where name = "+name;
+        return getBooking(query);
+    }
+    
+     public Booking getBooking(String query) {
         Booking booking = null;
         ResultSet rs = null;
-        
-        try{
-            String query = "select * from booking where id = " + String.valueOf(ID);
-            c.connect();
-            rs = c.retrieve(query);
-            
-            if(rs !=null){
-                while(rs.next()){
-                    booking = new Booking(
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getInt(5),
-                    rs.getString(6)
-                    );
+            try {
+                c.connect();
+                rs = c.retrieve(query);
+
+                if (rs != null) {
+                    while (rs.next()) {
+                        booking = new Booking(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getInt(5),
+                            rs.getString(6)
+                        );
+                    }
                 }
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            
+            } catch (Exception e) {
+                    e.printStackTrace();
         }
-                
-        c.close();
+
+        c.close(); // loka tengingu
         return booking;
     }
+
+    
+    
+    
+    
+    
     
     public void setBookingRecords(Booking booking){
         try{
@@ -51,7 +64,19 @@ public class BookingController {
         }
         c.close();
     }
-
+    
+    public void updateBooking(int id, String name){
+        String query = "update booking set customer_name = " +name + " where id = "+id;
+        try{
+            c.connect();
+            PreparedStatement pst = c.conn.prepareStatement(query);
+            pst.setString(1,name);
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void deleteBookingById(int id){
         try{
             c.connect();
@@ -62,6 +87,8 @@ public class BookingController {
             e.printStackTrace();
         }
     }
+    
+    
 
     public static void printBooking(Booking booking) {
         if(booking != null){
@@ -74,10 +101,12 @@ public class BookingController {
         }
     }
     
+    
+    
     public static void main(String[] args){
         BookingController bc = new BookingController();
         
-        Booking booking = bc.getBookingRecords(1);
+        Booking booking = bc.getBookingRecordsById(1);
         // if(booking != null){
         //     System.out.println(booking.getID());
         //     System.out.println(booking.getTrip());
@@ -93,7 +122,7 @@ public class BookingController {
         bc.setBookingRecords(booking2);
         
         
-        booking = bc.getBookingRecords(-1);
+        booking = bc.getBookingRecordsById(-1);
         if(booking != null){
             System.out.println(booking.getID());
             System.out.println(booking.getTrip());
