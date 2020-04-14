@@ -32,8 +32,11 @@ create table Booking(
     id integer primary key autoincrement not null,
     Trip varchar(128),
     Payment varchar(128)
-    CustomerName varchar(128)
+    customername varchar(128)
+    amount integer,
+    booking_date date
 );
+
 
 
 /*insert into ratings values(null,"vofflur a borgarnesi", date('2001-04-04'), 5, "aedislega gaman hehe");
