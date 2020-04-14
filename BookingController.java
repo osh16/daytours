@@ -11,7 +11,7 @@ public class BookingController {
         ResultSet rs = null;
         
         try{
-            String query = "select * from Booking where id = " + String.valueOf(ID);
+            String query = "select * from booking where id = " + String.valueOf(ID);
             c.connect();
             rs = c.retrieve(query);
             
@@ -47,7 +47,7 @@ public class BookingController {
 
             if(rs != null){
                 while(rs.next()){
-                    booking = new Booking(
+                    booking = new booking(
                     rs.getInt(1),
                     rs.getString(2),
                     rs.getString(3),
@@ -69,7 +69,7 @@ public class BookingController {
     public void setBookingRecords(Booking booking){
         try{
             c.connect();
-            PreparedStatement p = c.conn.prepareStatement("insert into Booking values(?,?,?,?,?,?)");
+            PreparedStatement p = c.conn.prepareStatement("insert into booking values(?,?,?,?,?,?)");
             p.setInt(1, booking.getID());
             p.setString(2, booking.getTrip());
             p.setString(3, booking.getPaymentMethod());
