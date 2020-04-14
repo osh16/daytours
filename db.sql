@@ -32,7 +32,9 @@ create table Booking(
     id integer primary key autoincrement not null,
     Trip varchar(128),
     Payment varchar(128)
-    CustomerName varchar(128)
+    customername varchar(128)
+    amount integer,
+    booking_date date
 );
 
 

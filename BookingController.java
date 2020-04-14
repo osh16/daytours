@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Booking;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author thors
- */
+
 public class BookingController {
     Connect c = new Connect();
     
@@ -21,7 +11,7 @@ public class BookingController {
         ResultSet rs = null;
         
         try{
-            String query = "select * from bookingInfo where id = " + String.valueOf(ID);
+            String query = "select * from Booking where id = " + String.valueOf(ID);
             c.connect();
             rs = c.retrieve(query);
             
@@ -31,7 +21,9 @@ public class BookingController {
                     rs.getInt(1),
                     rs.getString(2),
                     rs.getString(3),
-                    rs.getString(4)
+                    rs.getString(4),
+                    rs.getInt(5),
+                    rs.getString(6)
                     );
                 }
             }
@@ -47,11 +39,13 @@ public class BookingController {
     public void setBookingRecords(Booking booking){
         try{
             c.connect();
-            PreparedStatement p = c.conn.prepareStatement("insert into bookingInfo values(?,?,?,?)");
+            PreparedStatement p = c.conn.prepareStatement("insert into Booking values(?,?,?,?,?,?)");
             p.setInt(1, booking.getID());
             p.setString(2, booking.getTrip());
             p.setString(3, booking.getPaymentMethod());
             p.setString(4, booking.getCustomerName());
+            p.setInt(5, booking.getAmount());
+            p.setString(6,booking.getDate());
             p.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
@@ -68,9 +62,11 @@ public class BookingController {
             System.out.println(booking.getTrip());
             System.out.println(booking.getPaymentMethod());
             System.out.println(booking.getCustomerName());
+            System.out.println(booking.getAmount());
+            System.out.println(booking.getDate());
         }
         
-        Booking booking2 = new Booking(0,"test","test","test");
+        Booking booking2 = new Booking(0,"test","test","test",1,"test");
         System.out.println(booking2.getTrip());
         bc.setBookingRecords(booking2);
         
@@ -81,6 +77,8 @@ public class BookingController {
             System.out.println(booking.getTrip());
             System.out.println(booking.getPaymentMethod());
             System.out.println(booking.getCustomerName());
+            System.out.println(booking.getAmount());
+            System.out.println(booking.getDate());
             
         }
         
