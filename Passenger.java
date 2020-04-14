@@ -34,12 +34,12 @@ public class Passenger {
         return tour_id;
     }
 
-    public Passenger(int id, String name, String ssn, int age) {
+    public Passenger(int id, String name, String ssn, int age, String specialNeeds, int tour_id) {
 	this.id = id;
 	this.name = name;
 	this.ssn= ssn;
 	this.age = age;
-    this.specialNeeds = specialNeeds;
-    this.tour_id = tour_id;
+	this.specialNeeds = specialNeeds;
+	this.tour_id = tour_id;
     }
 }
