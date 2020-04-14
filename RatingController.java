@@ -146,6 +146,17 @@ public class RatingController {
 	c.close();
     }
 
+    public void deleteRatingById(int id) {
+    	try {
+    		c.connect();
+    		String query = "delete from ratings where id = " + id;
+    		PreparedStatement p = c.conn.prepareStatement(query);
+    		p.executeUpdate();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+
     public static void printRating(Rating rating) {
 	if (rating != null) {
 	    String name = rc.getPassengerByRating(rating).getName();
