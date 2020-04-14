@@ -37,7 +37,7 @@ public class TourController {
 	return count;
     }
 
-    public Tour getCheapTours(double max) {
+    public Tour[] getCheapTours(double max) {
     	ResultSet rs = null;
     	String query = "select * from tours where price <= " + max;
     	// String count = "select count(*) from tours where price <= " + max;
@@ -45,10 +45,6 @@ public class TourController {
     	int toursLength = getCount(query);
     	Tour[] tours = new Tour[toursLength];
     	int i = 0;
-
-    	try {
-		    c.connect();
-		    rs = c.retrieve(query);
 
 	    try {
 	    	c.connect();
@@ -74,7 +70,7 @@ public class TourController {
     	return tours;
     }
 
-    public static void print(Tour tour) {
+    public static void printTour(Tour tour) {
     	if (tour != null) {
     		System.out.println(tour.getId());
 			System.out.println(tour.getName());
@@ -135,13 +131,14 @@ public class TourController {
     	TourController tc = new TourController();
 
     	Tour tour = tc.getTourById(2);
-    	print(tour);
+    	printTour(tour);
 
     	Tour[] tours = tc.getCheapTours(30000);
+    	System.out.println();
     	for (int i = 0; i < tours.length; i++) {
-    		print(tours[i]);
+    		printTour(tours[i]);
     	}
-
+    	System.out.println();
    //  	tour = tc.getTourById(1);
    //  	if (tour != null) {
    //  		System.out.println(tour.getId());

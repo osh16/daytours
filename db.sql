@@ -36,6 +36,12 @@ create table Booking(
     CustomerName varchar(128)
 );
 
+insert into passenger values(null,"steini skrufjarn", "1010952399", 5, "ofnæmi fyrir aumingjum",1);
+insert into passenger values(null,"nonni newcastle", "1009742399", 45, null, 4);
+insert into passenger values(null,"skari skiptilykill", "0710932399", 12, "hnetuofnæmi", 1);
+insert into passenger values(null,"hinni hallamaelir", "1004932489", 34, "kuldaskræfa", 2);
+insert into passenger values(null,"maggi manchester", "0101014300", 10, null, 1);
+insert into passenger values(null,"astradur stefansson", "0704932499", 25, "ekkert transfólk", 3);
 
 /*insert into ratings values(null,"vofflur a borgarnesi", date('2001-04-04'), 5, "aedislega gaman hehe");
 insert into ratings values(null,"vaendiskaup i keflavik", date('2019-12-24'), 4, "mjog flottar konur bara gaman sko");
