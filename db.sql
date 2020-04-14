@@ -34,6 +34,8 @@ create table booking (
     trip varchar(128),
     payment varchar(128),
     customer_name varchar(128)
+    amount integer,
+    booking_date date
 );
 
 /* tours */
