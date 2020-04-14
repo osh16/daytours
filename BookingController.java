@@ -1,12 +1,11 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
 public class BookingController {
     Connect c = new Connect();
     
     
-    public Booking getBookingById(int ID){
+    public Booking getBookingRecords(int ID){
         Booking booking = null;
         ResultSet rs = null;
         
@@ -36,36 +35,6 @@ public class BookingController {
         return booking;
     }
     
-     public Booking getBookingByName(String name){
-        Booking booking = null;
-        ResultSet rs = null;
-
-        try{
-            String query = "select * from Booking where customername = " + String.valueOf(name);
-            c.connect();
-            rs = c.retrieve(query);
-
-            if(rs != null){
-                while(rs.next()){
-                    booking = new booking(
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getInt(5),
-                    rs.getString(6)
-                    ); 
-                }
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        c.close();
-        return booking;
-
-    }
-    
     public void setBookingRecords(Booking booking){
         try{
             c.connect();
@@ -82,11 +51,8 @@ public class BookingController {
         }
         c.close();
     }
-    
-    public static void main(String[] args){
-        BookingController bc = new BookingController();
-        
-        Booking booking = bc.getBookingById(1);
+
+    public static void printBooking(Booking booking) {
         if(booking != null){
             System.out.println(booking.getID());
             System.out.println(booking.getTrip());
@@ -95,13 +61,28 @@ public class BookingController {
             System.out.println(booking.getAmount());
             System.out.println(booking.getDate());
         }
+    }
+    
+    public static void main(String[] args){
+        BookingController bc = new BookingController();
+        
+        Booking booking = bc.getBookingRecords(1);
+        // if(booking != null){
+        //     System.out.println(booking.getID());
+        //     System.out.println(booking.getTrip());
+        //     System.out.println(booking.getPaymentMethod());
+        //     System.out.println(booking.getCustomerName());
+        //     System.out.println(booking.getAmount());
+        //     System.out.println(booking.getDate());
+        // }
+        printBooking(booking);
         
         Booking booking2 = new Booking(0,"test","test","test",1,"test");
         System.out.println(booking2.getTrip());
         bc.setBookingRecords(booking2);
         
         
-        booking = bc.getBookingById(-1);
+        booking = bc.getBookingRecords(-1);
         if(booking != null){
             System.out.println(booking.getID());
             System.out.println(booking.getTrip());
@@ -111,7 +92,8 @@ public class BookingController {
             System.out.println(booking.getDate());
             
         }
- 
+        
+        
         
     }
 }
