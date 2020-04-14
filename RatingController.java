@@ -145,6 +145,10 @@ public class RatingController {
 	}
 	c.close();
     }
+    
+    public void updateRating(Rating rating) {
+
+    }
 
     public static void printRating(Rating rating) {
 	if (rating != null) {
@@ -155,16 +159,6 @@ public class RatingController {
 	    }
 	    System.out.println(result);
 	}
-    	/*if (rating != null) {
-    		System.out.println(rating.getId());
-    		System.out.println(rating.getTitle());
-    		System.out.println(rating.getDate());
-		System.out.println(rating.getStars());
-    		System.out.println(rating.getFeedback());
-    		System.out.println(rating.getTourId());
-    		System.out.println(rating.getPassengerId());
-    	}
-	*/
     }
 
     // test

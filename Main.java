@@ -8,18 +8,6 @@ public class Main {
 	System.out.flush();  
     }  
 
-    public static void userMenu() {
-
-    }
-
-    public static void staffMenu() {
-
-    }
-
-    public static void adminMenu() {
-
-    }
-
     public static void printLogo() {
 	try {
 	    BufferedReader reader = new BufferedReader(new FileReader("logo.txt"));
@@ -31,6 +19,7 @@ public class Main {
 	    e.printStackTrace();
 	}
     }
+
     public static void printMenu() {
 	    System.out.println("1.  Get tour by id ");
 	    System.out.println("2.  Get tour by name ");
