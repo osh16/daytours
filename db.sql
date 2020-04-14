@@ -23,7 +23,10 @@ create table passenger (
     id integer primary key autoincrement not null,
     name varchar(128),
     ssn varchar(10),
-    age integer
+    age integer,
+    specialNeeds String,
+    tour_id integer,
+    foreign key(tour_id) references tours(id)
 );
 
 create table booking (
@@ -40,12 +43,12 @@ insert into tours values(null,"chicago town orbygljuferd i iceland", date("2020-
 insert into tours values(null,"fundur um malefni transfolks", date("2020-04-03"), 0,"politisk herferd","reykjavik");
 
 /* passengers */
-insert into passenger values(null,"steini skrufjarn", "1010952399", 5);
-insert into passenger values(null,"nonni newcastle", "1009742399", 45);
-insert into passenger values(null,"skari skiptilykill", "0710932399", 12);
-insert into passenger values(null,"hinni hallamaelir", "1004932489", 34);
-insert into passenger values(null,"maggi manchester", "0101014300", 10);
-insert into passenger values(null,"astradur stefansson", "0704932499", 25);
+insert into passenger values(null,"steini skrufjarn", "1010952399", 5, "ofnæmi fyrir aumingjum",1);
+insert into passenger values(null,"nonni newcastle", "1009742399", 45, null, 4);
+insert into passenger values(null,"skari skiptilykill", "0710932399", 12, "hnetuofnæmi", 1);
+insert into passenger values(null,"hinni hallamaelir", "1004932489", 34, "kuldaskræfa", 2);
+insert into passenger values(null,"maggi manchester", "0101014300", 10, null, 1);
+insert into passenger values(null,"astradur stefansson", "0704932499", 25, "ekkert transfólk", 3);
 
 /* ratings */
 insert into ratings values(null,"besta ferd lifs mins", date('NOW'), 5, "aedislega gaman hehe", 2, 1);

@@ -7,6 +7,7 @@ public class Passenger {
     private String ssn;
     private int age;
     private String specialNeeds;
+    private int tour_id
     //private Rating[] ratings;
 
     public int getId() {
@@ -29,11 +30,16 @@ public class Passenger {
         return specialNeeds;
     }
 
+    public int getTour_id() {
+        return tour_id;
+    }
+
     public Passenger(int id, String name, String ssn, int age) {
 	this.id = id;
 	this.name = name;
 	this.ssn= ssn;
 	this.age = age;
     this.specialNeeds = specialNeeds;
+    this.tour_id = tour_id;
     }
 }
