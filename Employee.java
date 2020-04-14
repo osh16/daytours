@@ -17,7 +17,7 @@ public class Employee {
     }
 
     public String getEmail() {
-	return ssn;
+	return email;
     }
 
     public int getPhoneNumber() {

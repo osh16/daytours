@@ -51,11 +51,8 @@ public class BookingController {
         }
         c.close();
     }
-    
-    public static void main(String[] args){
-        BookingController bc = new BookingController();
-        
-        Booking booking = bc.getBookingRecords(1);
+
+    public static void printBooking(Booking booking) {
         if(booking != null){
             System.out.println(booking.getID());
             System.out.println(booking.getTrip());
@@ -64,6 +61,21 @@ public class BookingController {
             System.out.println(booking.getAmount());
             System.out.println(booking.getDate());
         }
+    }
+    
+    public static void main(String[] args){
+        BookingController bc = new BookingController();
+        
+        Booking booking = bc.getBookingRecords(1);
+        // if(booking != null){
+        //     System.out.println(booking.getID());
+        //     System.out.println(booking.getTrip());
+        //     System.out.println(booking.getPaymentMethod());
+        //     System.out.println(booking.getCustomerName());
+        //     System.out.println(booking.getAmount());
+        //     System.out.println(booking.getDate());
+        // }
+        printBooking(booking);
         
         Booking booking2 = new Booking(0,"test","test","test",1,"test");
         System.out.println(booking2.getTrip());

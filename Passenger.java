@@ -7,7 +7,7 @@ public class Passenger {
     private String ssn;
     private int age;
     private String specialNeeds;
-    private int tour_id
+    private int tour_id;
     //private Rating[] ratings;
 
     public int getId() {

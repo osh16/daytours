@@ -115,6 +115,18 @@ public class RatingController {
 	c.close();
     }
 
+    public static void printRating(Rating rating) {
+    	if (rating != null) {
+    		System.out.println(rating.getId());
+    		System.out.println(rating.getTitle());
+    		System.out.println(rating.getDate());
+			System.out.println(rating.getStars());
+    		System.out.println(rating.getFeedback());
+    		System.out.println(rating.getTourId());
+    		System.out.println(rating.getPassengerId());
+    	}
+    }
+
     // test
     public static void main(String[] args) {
 	RatingController rc = new RatingController();
@@ -123,9 +135,10 @@ public class RatingController {
 	System.out.println("=========== get rating by id ==========");
 	// skoda rating med id
 	Rating rating = rc.getRatingById(2);
-	System.out.println(rating.getId());
-	System.out.println(rating.getTitle());
-	System.out.println(rating.getFeedback());
+	// System.out.println(rating.getId());
+	// System.out.println(rating.getTitle());
+	// System.out.println(rating.getFeedback());
+	printRating(rating);
 
 
 	System.out.println("=========== get rating by tour ==========");
