@@ -20,9 +20,18 @@ public class Main {
 
     }
 
+    public static void printLogo() {
+	try {
+	    BufferedReader reader = new BufferedReader(new FileReader("logo.txt"));
+	    String line;
+	    while ((line = reader.readLine()) != null) {
+		System.out.println(line);
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+    }
     public static void printMenu() {
-	    System.out.println("Demo fyrir daytours kerfið");
-	    System.out.println("=================");
 	    System.out.println("1.  Get tour by id ");
 	    System.out.println("2.  Get tour by name ");
 	    System.out.println("3.  Get cheap tours ");
@@ -34,7 +43,6 @@ public class Main {
 	    System.out.println("9.  Add rating ");
 	    System.out.println("10. Add booking");
 	    System.out.println("q. exit");
-	    System.out.println("=================");
 	    System.out.println("Sladu inn menu item");
     }
     public static void main(String[] args) throws IOException {
@@ -49,6 +57,7 @@ public class Main {
 
 	while (viktor) {
 	    clearScreen();
+	    printLogo();
 	    printMenu();
 	    String menu = reader.readLine();
 	    clearScreen();
