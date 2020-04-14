@@ -52,6 +52,17 @@ public class BookingController {
         c.close();
     }
 
+    public void deleteBookingById(int id){
+        try{
+            c.connect();
+            String query ="delete from ratings where id = "+id;
+            PreparedStatement pst = c.conn.prepareStatement(query);
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void printBooking(Booking booking) {
         if(booking != null){
             System.out.println(booking.getID());
