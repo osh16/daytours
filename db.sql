@@ -4,7 +4,8 @@ create table tours (
     tour_date date,
     price float,
     tour_type varchar(128),
-    location varchar(128)
+    location varchar(128),
+    hasPickup boolean
 );
 
 create table ratings (
@@ -39,23 +40,23 @@ create table booking (
 );
 
 /* tours */
-insert into tours values(null,"vofflur a borgarnesi", date('2010-10-10'), 99999, "aevintyraferd","borgarnes");
-insert into tours values(null,"vaendiskaup i keflavik", date('2019-12-24'), 7499, "aevintyraferd","keflavik");
-insert into tours values(null,"chicago town orbygljuferd i iceland", date("2020-04-03"), 32395,"matarferd","kopavogur");
-insert into tours values(null,"fundur um malefni transfolks", date("2020-04-03"), 0,"politisk herferd","reykjavik");
+insert into tours values(null,"vofflur a borgarnesi", date('2010-10-10'), 99999, "aevintyraferd","borgarnes", 0);
+insert into tours values(null,"vaendiskaup i keflavik", date('2019-12-24'), 7499, "aevintyraferd","keflavik", 1);
+insert into tours values(null,"chicago town orbylgjuferd i iceland", date("2020-04-03"), 32395,"matarferd","kopavogur", 0);
+insert into tours values(null,"fundur um malefni transfolks", date("2020-04-03"), 0,"politisk herferd","reykjavik", 1);
 
 /* passengers */
-insert into passenger values(null,"steini skrufjarn", "1010952399", 5, "ofnæmi fyrir aumingjum",1);
+insert into passenger values(null,"steini skrufjarn", "1010952399", 5, null,1);
 insert into passenger values(null,"nonni newcastle", "1009742399", 45, null, 4);
 insert into passenger values(null,"skari skiptilykill", "0710932399", 12, "hnetuofnæmi", 1);
 insert into passenger values(null,"hinni hallamaelir", "1004932489", 34, "kuldaskræfa", 2);
 insert into passenger values(null,"maggi manchester", "0101014300", 10, null, 1);
-insert into passenger values(null,"astradur stefansson", "0704932499", 25, "ekkert transfólk", 3);
+insert into passenger values(null,"astradur stefansson", "0704932499", 25, null , 3);
 
 /* ratings */
 insert into ratings values(null,"besta ferd lifs mins", date('NOW'), 5, "aedislega gaman hehe", 2, 1);
 insert into ratings values(null,"ok mun fara aftur", date('NOW'), 4, "mjog flottar konur bara gaman sko", 2, 2);
-insert into ratings values(null,"hehe", date('NOW'), 5, "virkilega erfitt og ataknlegt", 3, 4);
+insert into ratings values(null,"hehe", date('NOW'), 5, "virkilega erfitt og atakanlegt", 3, 4);
 insert into ratings values(null,"konan ekki anaegd", date('NOW'), 1, "....", 4, 1);
 
 
