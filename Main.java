@@ -6,8 +6,20 @@ public class Main {
     public static void clearScreen() {  
 	System.out.print("\033[H\033[2J");  
 	System.out.flush();  
-
     }  
+
+    public static void userMenu() {
+
+    }
+
+    public static void staffMenu() {
+
+    }
+
+    public static void adminMenu() {
+
+    }
+
     public static void printMenu() {
 	    System.out.println("Demo fyrir daytours kerfið");
 	    System.out.println("=================");
@@ -39,6 +51,7 @@ public class Main {
 	    clearScreen();
 	    printMenu();
 	    String menu = reader.readLine();
+	    clearScreen();
 	    switch (menu) {
 		case "1":
 		    System.out.println("Sláðu inn ID");
@@ -76,7 +89,9 @@ public class Main {
 		    System.out.println("Sláðu inn id á tour");
 		    id = Integer.parseInt(reader.readLine());
 		    tour = tc.getTourById(id);
+
 		    Rating[] ratings = rc.getRatingsByTour(tour);
+		    System.out.println("Nafn a túr: " + tour.getName().toUpperCase());
 		    System.out.println("=====");
 		    for (int i = 0; i < ratings.length; i++) {
 			rc.printRating(ratings[i]);

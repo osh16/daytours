@@ -128,6 +128,7 @@ public class TourController {
 
     // test
     public static void main(String[] args) {
+	/*
     	TourController tc = new TourController();
 
     	Tour tour = tc.getTourById(2);
@@ -163,5 +164,6 @@ public class TourController {
 
     	int maxId = tc.getLatestId();
     	System.out.println("ID = " + maxId);
+	*/
     }
 }

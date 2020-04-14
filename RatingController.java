@@ -3,6 +3,7 @@ import java.sql.PreparedStatement;
 
 public class RatingController {
     static TourController tc = new TourController();
+    static RatingController rc = new RatingController();
     Connect c = new Connect();
 
 
@@ -146,7 +147,15 @@ public class RatingController {
     }
 
     public static void printRating(Rating rating) {
-    	if (rating != null) {
+	if (rating != null) {
+	    String name = rc.getPassengerByRating(rating).getName();
+	    String result = String.format("Nafn: %s\nTitill: %s\n%s\n", name, rating.getTitle(), rating.getFeedback());
+	    for (int i = 0; i < rating.getStars(); i++) {
+		result += "★"; 
+	    }
+	    System.out.println(result);
+	}
+    	/*if (rating != null) {
     		System.out.println(rating.getId());
     		System.out.println(rating.getTitle());
     		System.out.println(rating.getDate());
@@ -155,15 +164,15 @@ public class RatingController {
     		System.out.println(rating.getTourId());
     		System.out.println(rating.getPassengerId());
     	}
+	*/
     }
 
     // test
     public static void main(String[] args) {
-	RatingController rc = new RatingController();
 
 
 
-	System.out.println("=========== get rating by id ==========");
+/*	System.out.println("=========== get rating by id ==========");
 	// skoda rating med id
 	Rating rating = rc.getRatingById(2);
 	// System.out.println(rating.getId());
@@ -174,6 +183,7 @@ public class RatingController {
 	System.out.println("TEST");
 	Passenger p = rc.getPassengerByRating(rating);
 	System.out.println(p.getName());
+	rc.printRating(rating);
 
 	System.out.println("=========== get rating by tour ==========");
 	// skoda ratings utfra tour
@@ -197,5 +207,6 @@ public class RatingController {
 	System.out.println(rating.getId());
 	System.out.println(rating.getTitle());
 	System.out.println(rating.getFeedback());
+	*/
     }
 }
