@@ -10,7 +10,7 @@ public class BookingController {
         ResultSet rs = null;
         
         try{
-            String query = "select * from Booking where id = " + String.valueOf(ID);
+            String query = "select * from booking where id = " + String.valueOf(ID);
             c.connect();
             rs = c.retrieve(query);
             
@@ -38,7 +38,7 @@ public class BookingController {
     public void setBookingRecords(Booking booking){
         try{
             c.connect();
-            PreparedStatement p = c.conn.prepareStatement("insert into Booking values(?,?,?,?,?,?)");
+            PreparedStatement p = c.conn.prepareStatement("insert into booking values(?,?,?,?,?,?)");
             p.setInt(1, booking.getID());
             p.setString(2, booking.getTrip());
             p.setString(3, booking.getPaymentMethod());
@@ -50,6 +50,17 @@ public class BookingController {
             e.printStackTrace();
         }
         c.close();
+    }
+
+    public void deleteBookingById(int id){
+        try{
+            c.connect();
+            String query ="delete from ratings where id = "+id;
+            PreparedStatement pst = c.conn.prepareStatement(query);
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void printBooking(Booking booking) {
@@ -97,3 +108,4 @@ public class BookingController {
         
     }
 }
+
