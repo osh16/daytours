@@ -31,6 +31,7 @@ public class Main {
 	RatingController rc = new RatingController();
 	TourController tc = new TourController();
 	Tour tour;
+	Rating rating;
 
 	boolean viktor = true;
 
@@ -49,6 +50,7 @@ public class Main {
 		case "2":
 		    System.out.println("Sláðu inn nafn á túr");
 		    String name = reader.readLine();
+		    System.out.println(name);
 		    tour = tc.getTourByName(name);
 		    tc.printTour(tour);
 		    reader.readLine();
@@ -64,6 +66,12 @@ public class Main {
 		    }
 		    reader.readLine();
 		    break;
+	    /*System.out.println("5.  Get rating by ID ");
+	    System.out.println("6.  Get rating by name	");
+	    System.out.println("7.  Get booking ");
+	    System.out.println("8.  Add tour ");
+	    System.out.println("9.  Add rating ");
+	    System.out.println("10. Add booking");*/
 		case "4":
 		    System.out.println("Sláðu inn id á tour");
 		    id = Integer.parseInt(reader.readLine());
@@ -74,76 +82,21 @@ public class Main {
 			rc.printRating(ratings[i]);
 			System.out.println("=====");
 		    }
+		    reader.readLine();
 		    break;
 		case "5":
+		    System.out.println("Sláðu inn ID");
+		    id = Integer.parseInt(reader.readLine());
+		    rating = rc.getRatingById(id);
+		    rc.printRating(rating);
+		    reader.readLine();
 		    break;
+		case "6":
 		case "q":
 		case "Q":
 		    viktor = false;
 		    break;
 	    }
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*RatingController rc = new RatingController();
-	TourController tc = new TourController();
-
-	System.out.println("=========== get rating by id ==========");
-	// skoda rating med id
-	Rating rating = rc.getRatingById(2);
-	System.out.println(rating.getId());
-	System.out.println(rating.getTitle());
-	System.out.println(rating.getFeedback());
-
-
-	System.out.println("=========== get rating by tour ==========");
-	// skoda ratings utfra tour
-	Tour tour = tc.getTourById(2);
-	rc.getRatingsByTour(tour);
-	Rating[] ratings = rc.getRatingsByTour(tour);
-
-	if (ratings != null) {
-	    for (int i = 0; i < ratings.length; i++) {
-		System.out.println(ratings[i].getId());
-		System.out.println(ratings[i].getTitle());
-		System.out.println(ratings[i].getFeedback());
-	    }
-	}
-
-	// baeta vid rating
-	System.out.println("=============baeta vid==================");
-	rating = new Rating(rc.getLatestId()+1, "hehe", "2010-10-10", 5, "rosa gott", 2,6);
-	rc.addRating(rating);	
-	rating = rc.getRatingById(rc.getLatestId());
-	System.out.println(rating.getId());
-	System.out.println(rating.getTitle());
-	System.out.println(rating.getFeedback());*/
     }
 }

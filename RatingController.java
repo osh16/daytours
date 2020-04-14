@@ -2,7 +2,9 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
 public class RatingController {
+    static TourController tc = new TourController();
     Connect c = new Connect();
+
 
     public int getLatestId() {
 	String query = "select * from ratings where id = (select max(id) from ratings)";
@@ -95,6 +97,34 @@ public class RatingController {
 	c.close(); // loka tengingu
 	return rating;
     }
+
+    public Passenger getPassengerByRating(Rating rating) {
+	Passenger passenger = null;
+	ResultSet rs = null;
+	String query = "select * from passenger where id = " + rating.getPassengerId();
+
+	try {
+	    c.connect();
+	    rs = c.retrieve(query);
+
+	    if (rs != null) {
+		while (rs.next()) {
+		    passenger = new Passenger(
+			rs.getInt(1),
+			rs.getString(2),
+			rs.getString(3),
+			rs.getInt(4),
+			rs.getString(5),
+			rs.getInt(6)
+		    );
+		}
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace(); 
+	}
+	c.close();
+	return passenger;
+    }
     
     public void addRating(Rating rating) {
 	try {
@@ -120,7 +150,7 @@ public class RatingController {
     		System.out.println(rating.getId());
     		System.out.println(rating.getTitle());
     		System.out.println(rating.getDate());
-			System.out.println(rating.getStars());
+		System.out.println(rating.getStars());
     		System.out.println(rating.getFeedback());
     		System.out.println(rating.getTourId());
     		System.out.println(rating.getPassengerId());
@@ -130,7 +160,8 @@ public class RatingController {
     // test
     public static void main(String[] args) {
 	RatingController rc = new RatingController();
-	TourController tc = new TourController();
+
+
 
 	System.out.println("=========== get rating by id ==========");
 	// skoda rating med id
@@ -140,6 +171,9 @@ public class RatingController {
 	// System.out.println(rating.getFeedback());
 	printRating(rating);
 
+	System.out.println("TEST");
+	Passenger p = rc.getPassengerByRating(rating);
+	System.out.println(p.getName());
 
 	System.out.println("=========== get rating by tour ==========");
 	// skoda ratings utfra tour
