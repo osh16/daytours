@@ -5,7 +5,7 @@ create table tours (
     price float,
     tour_type varchar(128),
     location varchar(128),
-    hasPickup boolean
+    hasPickup int
 );
 
 create table ratings (
