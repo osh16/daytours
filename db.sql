@@ -30,15 +30,9 @@ create table passenger(
 
 create table Booking(
     id integer primary key autoincrement not null,
-<<<<<<< HEAD
-    Trip varchar(128),
-    Payment varchar(128)
-    customername varchar(128)
-=======
     trip varchar(128),
     payment varchar(128),
     customername varchar(128),
->>>>>>> a800b469f661c003a8205b61aa776cc6dd272f12
     amount integer,
     booking_date date
 );
