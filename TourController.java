@@ -11,13 +11,13 @@ public class TourController {
     }
 
     public Tour getTourById(int id) {
-		String query = "select * from tours where id = " + String.valueOf(id); 
-		return getTour(query);
+	String query = "select * from tours where id = " + String.valueOf(id); 
+	return getTour(query);
     }
 
     public Tour getTourByName(String name) {
-		String query = "select * from tours where name like \"%" + name + "%\"";
-		return getTour(query);
+	String query = "select * from tours where name like \"" + name + "\"";
+	return getTour(query);
     }
 
     public int getCount(String query) {
@@ -169,7 +169,7 @@ public class TourController {
 
     public static void printTour(Tour tour) {
     	if (tour != null) {
-		String result = String.format("Nafn á tour: %s\nTegund ferðar: %s\nDagsetning: %s\nVerð: %s\nStaðsetning: %s\n", tour.getName(), tour.getType(), tour.getDate(), tour.getPrice(), tour.getLocation());
+		String result = String.format("%d:Nafn á tour: %s\nTegund ferðar: %s\nDagsetning: %s\nVerð: %s\nStaðsetning: %s\n", tour.getId(), tour.getName(), tour.getType(), tour.getDate(), tour.getPrice(), tour.getLocation());
 	    System.out.println(result);
     	}
     }
@@ -232,7 +232,6 @@ public class TourController {
     	}
     }
 
-<<<<<<< HEAD
     public void updateTourById(int id, String newName, String newTourDate, double newPrice, String newLocation, String newType) {
     	String query = "update tours set name = ?, set tour_date = ?, set price = ?, "
     			 + "set tour_type = ?, set location = ?, where id = " + id;

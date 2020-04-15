@@ -41,12 +41,6 @@ public class BookingController {
         c.close(); // loka tengingu
         return booking;
     }
-
-    
-    
-    
-    
-    
     
     public void setBookingRecords(Booking booking){
         try{

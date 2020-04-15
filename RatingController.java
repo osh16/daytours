@@ -65,11 +65,6 @@ public class RatingController {
 	return getRating(query);
     }
 
-    public Rating getRatingByName(String name) {
-	String query = "select * from ratings where id = " + name;
-	return getRating(query);
-    }
-
     public Rating getRating(String query) {
 	Rating rating = null;
 	ResultSet rs = null;
@@ -168,6 +163,7 @@ public class RatingController {
 	    for (int i = 0; i < rating.getStars(); i++) {
 		result += "★"; 
 	    }
+	    result += "\n";
 	    System.out.println(result);
 	}
     }
