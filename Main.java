@@ -55,6 +55,7 @@ public class Main {
 	System.out.println("4. Add rating");
 	System.out.println("5. Get tours with pickup");
 	System.out.println("6. Add booking");
+	System.out.println("7. Search tours");
 	System.out.println("q. Go back");
 	System.out.print("Sladu inn menu item: ");
     }
@@ -362,6 +363,18 @@ public class Main {
 	}
 	reader.readLine();
     }
+
+    public static void searchTours() throws IOException  {
+	System.out.println("Search tours");
+	System.out.println("=============");
+	System.out.print("Sláðu inn leitarstreng: ");
+	String query = reader.readLine();
+	Tour[] tours = tc.searchTours(query);
+	for (int i = 0; i < tours.length; i++) {
+	    tc.printTour(tours[i]);
+	}
+	reader.readLine();
+    }
     public static void staffMenu() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	boolean viktor = true;
@@ -440,6 +453,9 @@ public class Main {
 		    break;
 		case "6":
 		    addBooking();
+		    break;
+		case "7":
+		    searchTours();
 		    break;
 		case "q":
 		case "Q":
