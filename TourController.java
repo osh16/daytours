@@ -16,7 +16,7 @@ public class TourController {
     }
 
     public Tour getTourByName(String name) {
-		String query = "select * from tours where name = " + name;
+		String query = "select * from tours where name like \"%" + name + "%\"";
 		return getTour(query);
     }
 
@@ -200,12 +200,7 @@ public class TourController {
     	}
     }
 
-    public void updateTourById(int id) {
-    	String newName = "updateadur tour";
-    	String newTourDate = "2020-04-14";
-    	double newPrice = 5555.5;
-    	String newTourType = "aevintyraferd";
-    	String newLocation = "egilsstadir";
+    public void updateTourById(int id, String newName, String newTourDate, double newPrice, String newLocation, String newType) {
     	String query = "update tours set name = ?, set tour_date = ?, set price = ?, "
     			 + "set tour_type = ?, set location = ?, where id = " + id;
     	try {
@@ -214,7 +209,7 @@ public class TourController {
     		p.setString(1,newName);
     		p.setString(2,newTourDate);
     		p.setDouble(3,newPrice);
-    		p.setString(4,newTourType);
+    		p.setString(4,newType);
     		p.setString(5,newLocation);
     		p.executeUpdate();
     	} catch (Exception e) {
@@ -225,53 +220,6 @@ public class TourController {
     // test
     public static void main(String[] args) {
     	TourController tc = new TourController();
-
-    	Tour tour = tc.getTourById(2);
-    	printTour(tour);
-
-    	// tour = tc.getPickupTours();
-    	// printTour(tour);
-
-    	// System.out.println("_-------------");
-    	// tour = tc.getTourByName("vaendiskaup i keflavik");
-    	// printTour(tour);
-
-    	// tc.updateTourById(4);
-
-    	Tour[] tours = tc.getPickupTours();
-    	// tours = tc.getAllTours();
-
-    	// tc.deleteTourById(1);
-
-    	System.out.println();
-    	for (int i = 0; i < tours.length; i++) {
-    		printTour(tours[i]);
-    	}
-    	System.out.println();
-
-   //  	tour = tc.getTourById(1);
-   //  	if (tour != null) {
-   //  		System.out.println(tour.getId());
-			// System.out.println(tour.getName());
-			// System.out.println(tour.getDate());
-			// System.out.println(tour.getPrice());
-			// System.out.println(tour.getType());
-			// System.out.println(tour.getLocation());
-   //  	}
-
-   //  	Tour newTour = new Tour(6,"allahu akhbar","2001-09-11",1.0,"hryðjuverkaferð","NY");
-   //  	tc.addTour(newTour);
-   //  	tour = tc.getTourById(6);
-   //  	if (tour != null) {
-   //  		System.out.println(tour.getId());
-			// System.out.println(tour.getName());
-			// System.out.println(tour.getDate());
-			// System.out.println(tour.getPrice());
-			// System.out.println(tour.getType());
-			// System.out.println(tour.getLocation());
-   //  	}
-
-    	int maxId = tc.getLatestId();
-    	System.out.println("ID = " + maxId);
+	System.out.println(tc.getTourByName("skaup i ke").getName());
     }
 }

@@ -77,6 +77,22 @@ public class Main {
 		    reader.readLine();
 		    break;
 		case "5":// add tour
+		    System.out.print("Nafn: ");
+		    String name = reader.readLine();
+		    System.out.print("Dagsetning: ");
+		    String date = reader.readLine();
+		    System.out.print("Verð: ");
+		    double price = Double.parseDouble(reader.readLine());
+		    System.out.print("Tegund ferðar: ");
+		    String type = reader.readLine();
+		    System.out.print("Staðsetning: ");
+		    String location = reader.readLine();
+		    System.out.print("Er hotel pickup? (0 eða 1): ");
+		    int hotelPickup = Integer.parseInt(reader.readLine());
+		    Tour tour = new Tour(tc.getLatestId(), name, date, price, type, location, hotelPickup);
+		    tc.addTour(tour);
+		    tc.printTour(tour);  
+		    reader.readLine();
 		    break;
 		case "6":// delete tour
 		    System.out.print("Sláðu inn ID á tour: ");
@@ -88,7 +104,7 @@ public class Main {
 		case "8":// get tour
 		    System.out.print("Sláðu inn ID á tour: ");
 		    id = Integer.parseInt(reader.readLine());
-		    Tour tour = tc.getTourById(id);
+		    tour = tc.getTourById(id);
 		    tc.printTour(tour);
 		    reader.readLine();
 		    break;
@@ -149,6 +165,13 @@ public class Main {
 		    }
 		    reader.readLine();
 		case "4":// add rating
+		    System.out.print("Fyrirsögn: ");
+		    String title = reader.readLine();
+		    System.out.print("Feedback: ");
+		    String feedback = reader.readLine();
+		    //Rating rating = new Rating();
+
+		    reader.readLine();
 		case "5":// check if tour has pickup
 		case "q":
 		case "Q":
