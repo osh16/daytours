@@ -7,6 +7,7 @@ public class Tour {
     private double price;
     private String type;
     private String location;
+    private int hasPickup;
     //skv design model
     //private Passenger[] passengers;
     //private Employee[] employees;
@@ -35,12 +36,17 @@ public class Tour {
 	return location;
     }
 
-    public Tour(Integer id, String name, String date, double price, String type, String location) {
+    public int getHasPickup() {
+        return hasPickup;
+    }
+
+    public Tour(Integer id, String name, String date, double price, String type, String location, int hasPickup) {
 	this.id = id;
 	this.name = name;
 	this.date = date;
 	this.price = price;
 	this.type = type;
 	this.location = location;
+    this.hasPickup = hasPickup;
     }
 }
