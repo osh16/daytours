@@ -59,6 +59,10 @@ public class Main {
 	System.out.println("8.	Get tour");
 	System.out.println("9.	Delete rating");
 	System.out.println("10.	Update rating");
+	System.out.println("11.	Get all tours");
+	System.out.println("12.	Get all ratings");
+	System.out.println("13.	Get all bookings");
+	System.out.println("14.	Get all passengers");
 	System.out.println("q.	Go back");
 	System.out.print("Sladu inn menu item: ");
     }
@@ -67,30 +71,74 @@ public class Main {
 	System.out.println("Add booking");
 	System.out.println("=============");
 
+	pc.printAllPassengers();
+	System.out.print("Sláðu inn id á passenger: ");
+	int passengerId = Integer.parseInt(reader.readLine());	
+
+	tc.printAllTours();
+	System.out.print("Sláðu inn id á tour: ");
+	int tourId = Integer.parseInt(reader.readLine());	
+
+	System.out.print("Sláðu inn greiðsluaðferð: ");
+	String payment = reader.readLine();
+	
+	bc.addBooking(new Booking(bc.getLatestId(), payment, getCurrentDate(), passengerId, tourId));
+	
+	reader.readLine();
     }
     public static void deleteBooking() throws IOException {
 	System.out.println("Delete booking");
 	System.out.println("=============");
+	
+	bc.printAllBookings();
+
 	System.out.print("Sláðu inn ID á booking: ");
 	int id = Integer.parseInt(reader.readLine());
-	bc.deleteBookingById(id);
+	bc.deleteBooking(id);
+	reader.readLine();
 
     }
     public static void updateBooking() throws IOException {
+	System.out.println("Update booking");
+	System.out.println("=============");
 
+	bc.printAllBookings();
+	System.out.print("Sláðu inn ID á booking: ");
+	int id = Integer.parseInt(reader.readLine());
+
+	Booking booking = bc.getBookingById(id);
+
+	System.out.println("Ath. ef þú villt halda eins og er, ekki slá inn neitt");
+
+	System.out.print("Sláðu inn greiðsluleið: ");
+	String payment = reader.readLine();
+
+	System.out.print("Sláðu inn dagsetningu (yyyy-mm-dd): ");
+	String date = reader.readLine();
+
+	System.out.print("Sláðu inn passenger id");
+	int passengerId = Integer.parseInt(reader.readLine());
+
+	System.out.print("Sláðu inn tour id");
+	int tourId = Integer.parseInt(reader.readLine());
+
+	bc.updateBooking(booking, payment, date, passengerId, tourId);
+	reader.readLine();
     }
     public static void getBooking() throws IOException {
 	System.out.println("Get booking");
 	System.out.println("=============");
+
 	System.out.print("Sláðu inn ID á booking: ");
 	int id = Integer.parseInt(reader.readLine());
-	Booking booking = bc.getBookingRecordsById(id);
+	Booking booking = bc.getBookingById(id);
 	bc.printBooking(booking);
 	reader.readLine();
     }
     public static void addTour() throws IOException {
 	System.out.println("Add tour");
 	System.out.println("=============");
+
 	System.out.print("Nafn: ");
 	String name = reader.readLine();
 
@@ -117,11 +165,42 @@ public class Main {
     public static void deleteTour() throws IOException {
 	System.out.println("Delete tour");
 	System.out.println("=============");
+
+	tc.printAllTours();
+
 	System.out.print("Sláðu inn ID á tour: ");
 	int id = Integer.parseInt(reader.readLine());
 	tc.deleteTourById(id);
     }
     public static void updateTour() throws IOException {
+	System.out.println("Update tour");
+	System.out.println("=============");
+
+	tc.printAllTours();
+
+	System.out.print("Sláðu inn ID á tour");
+	int id = Integer.parseInt(reader.readLine());
+	Tour tour = tc.getTourById(id);
+	
+	System.out.println("Ath. ef þú villt halda eins og er, ekki slá inn neitt");
+
+	System.out.print("Sláðu inn nafn: ");
+	String name = reader.readLine();
+
+	System.out.print("Sláðu inn dagsetningu (yyyy-mm-dd): ");
+	String date = reader.readLine();	
+
+	System.out.print("Sláðu inn verð (-1 til að halda eins og er): ");
+	Double price = Double.parseDouble(reader.readLine());
+
+	System.out.print("Sláðu inn nýja tegund af ferð: ");
+	String type = reader.readLine();
+
+	System.out.print("Sláðu inn nýja staðsetningu: ");
+	String location = reader.readLine();
+
+	tc.updateTour(tour, name, date, price, type, location);
+	reader.readLine();
 
     }
     public static void getTour() throws IOException {
@@ -136,6 +215,7 @@ public class Main {
     public static void deleteRating() throws IOException {
 	System.out.println("Delete rating");
 	System.out.println("=============");
+	rc.printAllRatings();
 	System.out.print("Sláðu inn ID á rating: ");
 	int id = Integer.parseInt(reader.readLine());
 	rc.deleteRatingById(id);
@@ -143,64 +223,50 @@ public class Main {
     }
 
     public static void updateRating() throws IOException {
-
-    }
-
-    public static void staffMenu() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	boolean viktor = true;
-	while (viktor) {
-	    clearScreen();
-	    printLogo();
-	    printStaffMenu();
-	    String menu = reader.readLine();
-	    clearScreen();
-	    switch (menu) {
-		case "1":// add booking
-		    
-		    break;
-		case "2":// delete booking
-		    deleteBooking();
-		    break;
-		case "3":// update booking
-		    break;
-		case "4":// get booking
-		    getBooking();
-		    break;
-		case "5":// add tour
-		    addTour();
-		    break;
-		case "6":// delete tour
-		    deleteTour();
-		    break;
-		case "7":// update tour
-		    break;
-		case "8":// get tour
-		    getTour();
-		    break;
-		case "9":// delete rating 
-		    break;
-		case "10":// update rating 
-		    break;
-		case "q":
-		case "Q":
-		    viktor = false;
-		    break;
-
-	    }
-	}
+	System.out.println("Update rating");
+	System.out.println("=============");
+	rc.printAllRatings();
+	System.out.print("Sláðu inn ID á rating: ");
+	int id = Integer.parseInt(reader.readLine());
+	Rating rating = rc.getRatingById(id);
+	System.out.print("Breyttu titil: ");
+	String title = reader.readLine();
+	System.out.print("Breyttu feedback: ");
+	String feedback = reader.readLine();
+	rc.updateRating(rating, title, feedback);
     }
 
     public static void getAllTours() throws IOException {
-	Tour[] tours = tc.getAllTours();
+	System.out.println("Get all tours");
+	System.out.println("=============");
+	tc.printAllTours();
+	reader.readLine();
+    }
 
-	for (int i = 0; i < tours.length; i++) {
-	    tc.printTour(tours[i]);
-	}
+    public static void getAllRatings() throws IOException {
+	System.out.println("Get all ratings");
+	System.out.println("=============");
+	rc.printAllRatings();
+	reader.readLine();
+    }
+
+    public static void getAllBookings() throws IOException {
+	System.out.println("Get all bookings");
+	System.out.println("=============");
+	bc.printAllBookings();
+	reader.readLine();
+    }
+
+    public static void getAllPassengers() throws IOException {
+	System.out.println("Get all passengers");
+	System.out.println("=============");
+	pc.printAllPassengers();
 	reader.readLine();
     }
 
     public static void getCostEfficientTours() throws IOException  {
+	System.out.println("Get cost efficient tours");
+	System.out.println("=============");
 	System.out.println("Sláðu inn hámarksverð");
 	int price = Integer.parseInt(reader.readLine());
 
@@ -213,6 +279,8 @@ public class Main {
     }
 
     public static void getRatingsByTour() throws IOException  {
+	System.out.println("Get ratings by tour");
+	System.out.println("=============");
 	System.out.print("Sláðu inn id á tour: ");
 	int id = Integer.parseInt(reader.readLine());
 	Tour tour = tc.getTourById(id);
@@ -226,6 +294,8 @@ public class Main {
     }
 
     public static void addRating() throws IOException  {
+	System.out.println("Add rating");
+	System.out.println("=============");
 	Passenger[] passengers = pc.getAllPassengers();
 	for (int i = 0; i < passengers.length; i++) {
 	    pc.printPassenger(passengers[i]);
@@ -261,13 +331,75 @@ public class Main {
 	reader.readLine();
     }
 
+
     public static void getTourWithPickup() throws IOException  {
+	System.out.println("Get tours with pickup");
+	System.out.println("=============");
 	Tour[] tours = tc.getPickupTours();
 	for (int i = 0; i < tours.length; i++) {
 	    tc.printTour(tours[i]);
 	    System.out.println("=====");
 	}
 	reader.readLine();
+    }
+    public static void staffMenu() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	boolean viktor = true;
+	while (viktor) {
+	    clearScreen();
+	    printLogo();
+	    printStaffMenu();
+	    String menu = reader.readLine();
+	    clearScreen();
+	    switch (menu) {
+		case "1":// add booking
+		    addBooking(); 
+		    break;
+		case "2":// delete booking
+		    deleteBooking();
+		    break;
+		case "3":// update booking
+		    updateBooking();
+		    break;
+		case "4":// get booking
+		    getBooking();
+		    break;
+		case "5":// add tour
+		    addTour();
+		    break;
+		case "6":// delete tour
+		    deleteTour();
+		    break;
+		case "7":// update tour
+		    updateTour();
+		    break;
+		case "8":// get tour
+		    getTour();
+		    break;
+		case "9":// delete rating 
+		    deleteRating();
+		    break;
+		case "10":// update rating 
+		    updateRating();
+		    break;
+		case "11":
+		    getAllTours();
+		    break;
+		case "12":
+		    getAllRatings();
+		    break;
+		case "13":
+		    getAllBookings();
+		    break;
+		case "14":
+		    getAllPassengers();
+		    break;
+		case "q":
+		case "Q":
+		    viktor = false;
+		    break;
+	    }
+	}
     }
 
 

@@ -3,7 +3,6 @@ import java.sql.PreparedStatement;
 
 public class RatingController {
     static TourController tc = new TourController();
-    static RatingController rc = new RatingController();
     Connect c = new Connect();
 
 
@@ -55,6 +54,7 @@ public class RatingController {
 		}
 	    }
 	} catch (Exception e) {
+	    System.out.println("Ekki tókst að sækja rating");
 	    e.printStackTrace();
 	}
 	return ratings;
@@ -87,11 +87,44 @@ public class RatingController {
 		}
 	    }
 	} catch (Exception e) {
+	    System.out.println("Ekki tókst að sækja rating");
 	    e.printStackTrace();
 	}
 
 	c.close(); // loka tengingu
 	return rating;
+    }
+
+    public Rating[] getAllRatings() {
+    	ResultSet rs = null;
+    	String query = "select * from ratings";
+    	int count = getCount(query);
+    	Rating[] ratings = new Rating[count];
+    	int i = 0;
+	try {
+	    c.connect();
+	    rs = c.retrieve(query);
+
+	    if (rs != null) {
+		    while (rs.next()) {
+			    ratings[i] = new Rating(
+				    rs.getInt(1),
+				    rs.getString(2),
+				    rs.getString(3),
+				    rs.getInt(4),
+				    rs.getString(5),
+				    rs.getInt(6),
+				    rs.getInt(7)
+			    );
+			    i++;
+		    }
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+
+    	return ratings;
+
     }
 
     public Passenger getPassengerByRating(Rating rating) {
@@ -141,8 +174,29 @@ public class RatingController {
 	c.close();
     }
     
-    public void updateRating(Rating rating) {
+    public void updateRating(Rating rating, String newTitle, String newFeedback) {
+	String query = "update ratings set title = ?, feedback = ?, where id = " + rating.getId();
+	try {
+	    c.connect();
+	    PreparedStatement p = c.conn.prepareStatement(query);
 
+	    if (newTitle == null) {
+		p.setString(1, rating.getTitle());
+	    } else {
+		p.setString(1, newTitle);
+	    }
+
+	    if (newFeedback == null) {
+		p.setString(2, rating.getFeedback());
+	    } else {
+		p.setString(2, newFeedback);
+	    }
+	    p.executeUpdate();
+
+	} catch (Exception e) {
+	    System.out.println("Ekki tókst að breyta kommenti");
+	    e.printStackTrace();
+	}
     }
 
     public void deleteRatingById(int id) {
@@ -156,10 +210,16 @@ public class RatingController {
     	}
     }
 
-    public static void printRating(Rating rating) {
+    public void printAllRatings() {
+	Rating[] ratings = getAllRatings();
+	for (int i = 0; i < ratings.length; i++) {
+	    printRating(ratings[i]);
+	}
+    }
+    public void printRating(Rating rating) {
 	if (rating != null) {
-	    String name = rc.getPassengerByRating(rating).getName();
-	    String result = String.format("Nafn: %s\nTitill: %s\n%s\n", name, rating.getTitle(), rating.getFeedback());
+	    String name = getPassengerByRating(rating).getName();
+	    String result = String.format("id: %d\nNafn: %s\nTitill: %s\n%s\n", rating.getId(), name, rating.getTitle(), rating.getFeedback());
 	    for (int i = 0; i < rating.getStars(); i++) {
 		result += "★"; 
 	    }

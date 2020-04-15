@@ -1,47 +1,35 @@
 public class Booking {
-    private int ID;
-    private String Trip;
-    private String PaymentMethod;
-    private String CustomerName;
-    private int Amount;
-    private String Booking_date;
+    private int id;
+    private String paymentMethod;
+    private String bookingDate;
+    private int passengerId;
+    private int tourId;
     
-    public int getID(){
-        return ID;
-    }
-    
-    
-    public String getTrip(){
-        return Trip;
-    }
-    
-    public String getPaymentMethod(){
-        
-        return PaymentMethod;
-    }
-    
-    public String getCustomerName(){
-        
-        return CustomerName;
+    public int getId(){
+        return id;
     }
 
-    public int getAmount(){
-	
-	return Amount;
+    public String getPayment(){
+        return paymentMethod;
     }
-
+    
     public String getDate(){
-	
-	return Booking_date;
+	return bookingDate;
+    }
+    
+    public int getPassengerId() {
+	return passengerId;
     }
 
-    
-    public Booking(int ID,String Trip,String PaymentMethod,String CustomerName,int Amount,String Booking_date){
-        this.ID = ID;
-        this.Trip = Trip;
-        this.PaymentMethod = PaymentMethod;
-        this.CustomerName = CustomerName;
-        this.Amount = Amount;
-        this.Booking_date = Booking_date;
+    public int getTourId() {
+	return tourId;
+    }
+
+    public Booking(int id,String paymentMethod, String bookingDate, int passengerId, int tourId) {
+        this.id = id;
+        this.paymentMethod = paymentMethod;
+        this.bookingDate = bookingDate;
+	this.passengerId = passengerId;
+	this.tourId = tourId;
     }
 }

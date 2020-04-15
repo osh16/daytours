@@ -5,7 +5,7 @@ create table tours (
     price float,
     tour_type varchar(128),
     location varchar(128),
-    hasPickup int
+    hasPickup integer
 );
 
 create table ratings (
@@ -32,12 +32,15 @@ create table passenger (
 
 create table booking (
     id integer primary key autoincrement not null,
-    trip varchar(128),
     payment varchar(128),
-    customer_name varchar(128),
-    amount integer,
-    booking_date date
+    booking_date date,
+    has_payed integer,
+    passenger_id integer,
+    tour_id integer,
+    foreign key(passenger_id) references passenger(id),
+    foreign key(tour_id) references tours(id)
 );
+
 
 /* tours */
 insert into tours values(null,"vofflur a borgarnesi", date('2010-10-10'), 99999, "aevintyraferd","borgarnes", 0);
@@ -59,9 +62,11 @@ insert into ratings values(null,"ok mun fara aftur", date('NOW'), 4, "mjog flott
 insert into ratings values(null,"hehe", date('NOW'), 5, "virkilega erfitt og atakanlegt", 3, 4);
 insert into ratings values(null,"konan ekki anaegd", date('NOW'), 1, "....", 4, 1);
 
-
 /* booking */
-insert into booking values(null,"vofflur a borgarnesi", "kreditkort", "steini skrufjarn", 10000, date('2010-10-8'));
-insert into booking values(null,"vaendiskaup i keflavik", "kreditkort", "nonni newcastle", 20000, date('2019-12-18'));
-insert into booking values(null,"chicago town orbylgjuferd i iceland", "kreditkort", "skari skiptilykill", 5000, date('2020-04-01'));
-insert into booking values(null,"fundur um malefni transfolks", "kreditkort", "astradur stefansson", 7000, date('2020-03-18'));
+insert into booking values(null,"kreditkort",date('2010-10-08'),1,1,2);
+insert into booking values(null,"kreditkort",date('2010-10-08'),1,2,1);
+insert into booking values(null,"kreditkort",date('2010-10-08'),1,3,3);
+insert into booking values(null,"kreditkort",date('2010-10-08'),1,4,2);
+insert into booking values(null,"kreditkort",date('2010-10-08'),1,2,2);
+
+

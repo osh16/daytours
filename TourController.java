@@ -167,11 +167,18 @@ public class TourController {
     	return tours;
     }
 
-    public static void printTour(Tour tour) {
+
+    public void printTour(Tour tour) {
     	if (tour != null) {
-		String result = String.format("%d:Nafn á tour: %s\nTegund ferðar: %s\nDagsetning: %s\nVerð: %s\nStaðsetning: %s\n", tour.getId(), tour.getName(), tour.getType(), tour.getDate(), tour.getPrice(), tour.getLocation());
+		String result = String.format("id: %d\nNafn á tour: %s\nTegund ferðar: %s\nDagsetning: %s\nVerð: %s\nStaðsetning: %s\n", tour.getId(), tour.getName(), tour.getType(), tour.getDate(), tour.getPrice(), tour.getLocation());
 	    System.out.println(result);
     	}
+    }
+    public void printAllTours() {
+	Tour[] tours = getAllTours();
+	for (int i = 0; i < tours.length; i++) {
+	    printTour(tours[i]);
+	}
     }
 
     public Tour getTour(String query) {
@@ -232,17 +239,41 @@ public class TourController {
     	}
     }
 
-    public void updateTourById(int id, String newName, String newTourDate, double newPrice, String newLocation, String newType) {
-    	String query = "update tours set name = ?, set tour_date = ?, set price = ?, "
-    			 + "set tour_type = ?, set location = ?, where id = " + id;
+    public void updateTour(Tour tour, String newName, String newTourDate, double newPrice, String newType, String newLocation) {
+    	String query = "update tours set name = ?, set tour_date = ?, set price = ?, set tour_type = ?, set location = ?, where id = " + tour.getId();
     	try {
     		c.connect();
     		PreparedStatement p = c.conn.prepareStatement(query);
-    		p.setString(1,newName);
-    		p.setString(2,newTourDate);
-    		p.setDouble(3,newPrice);
-    		p.setString(4,newType);
-    		p.setString(5,newLocation);
+		if (newName.equals("")) {
+		    p.setString(1, tour.getName());
+		} else {
+		    p.setString(1, newName);
+		}
+
+		if (newTourDate.equals("")) {
+		    p.setString(2, tour.getDate());
+		} else {
+		    p.setString(2, newTourDate);
+		}
+
+		if (newPrice == -1) {
+		    p.setDouble(3, tour.getPrice());
+		} else {
+		    p.setDouble(3, newPrice);
+		}
+
+		if (newType.equals("")) {
+		    p.setString(4, tour.getType());
+		} else {
+		    p.setString(4, newType);
+		}
+
+		if (newLocation.equals("")) {
+		    p.setString(5, tour.getLocation());
+		} else {
+		    p.setString(5, newLocation); 
+		}
+
     		p.executeUpdate();
     	} catch (Exception e) {
     		e.printStackTrace();
