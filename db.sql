@@ -34,7 +34,6 @@ create table booking (
     id integer primary key autoincrement not null,
     payment varchar(128),
     booking_date date,
-    has_payed integer,
     passenger_id integer,
     tour_id integer,
     foreign key(passenger_id) references passenger(id),
@@ -63,10 +62,10 @@ insert into ratings values(null,"hehe", date('NOW'), 5, "virkilega erfitt og ata
 insert into ratings values(null,"konan ekki anaegd", date('NOW'), 1, "....", 4, 1);
 
 /* booking */
-insert into booking values(null,"kreditkort",date('2010-10-08'),1,1,2);
-insert into booking values(null,"kreditkort",date('2010-10-08'),1,2,1);
-insert into booking values(null,"kreditkort",date('2010-10-08'),1,3,3);
-insert into booking values(null,"kreditkort",date('2010-10-08'),1,4,2);
-insert into booking values(null,"kreditkort",date('2010-10-08'),1,2,2);
+insert into booking values(null,"kreditkort",date('2010-10-08'),1,2);
+insert into booking values(null,"kreditkort",date('2010-10-08'),2,1);
+insert into booking values(null,"kreditkort",date('2010-10-08'),3,3);
+insert into booking values(null,"kreditkort",date('2010-10-08'),4,2);
+insert into booking values(null,"kreditkort",date('2010-10-08'),2,2);
 
 
