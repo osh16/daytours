@@ -14,6 +14,7 @@ public class Main {
     static RatingController rc = new RatingController();
     static TourController tc = new TourController();
     static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    static String read;
 
     public static String getCurrentDate() {
 	Date date = Calendar.getInstance().getTime();
@@ -82,11 +83,21 @@ public class Main {
 
 	pc.printAllPassengers();
 	System.out.print("Sláðu inn id á passenger: ");
-	int passengerId = Integer.parseInt(reader.readLine());	
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int passengerId = Integer.parseInt(read);
 
 	tc.printAllTours();
 	System.out.print("Sláðu inn id á tour: ");
-	int tourId = Integer.parseInt(reader.readLine());	
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int tourId = Integer.parseInt(read);	
 
 	System.out.print("Sláðu inn greiðsluaðferð: ");
 	String payment = reader.readLine();
@@ -102,7 +113,12 @@ public class Main {
 	bc.printAllBookings();
 
 	System.out.print("Sláðu inn ID á booking: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	bc.deleteBooking(id);
 	reader.readLine();
 
@@ -139,7 +155,12 @@ public class Main {
 	System.out.println("=============");
 
 	System.out.print("Sláðu inn ID á booking: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	Booking booking = bc.getBookingById(id);
 	bc.printBooking(booking);
 	if (booking == null) {
@@ -158,7 +179,12 @@ public class Main {
 	String date = reader.readLine();
 
 	System.out.print("Verð: ");
-	double price = Double.parseDouble(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	double price = Double.parseDouble(read);
 
 	System.out.print("Tegund ferðar: ");
 	String type = reader.readLine();
@@ -167,8 +193,16 @@ public class Main {
 	String location = reader.readLine();
 
 	System.out.print("Er hotel pickup? (0 eða 1): ");
-	int hotelPickup = Integer.parseInt(reader.readLine());
-	String pickup = reader.readLine();
+
+	read = reader.readLine();
+	while (true) {
+		if (isNumeric(read))
+			if (read.equals("0") || read.equals("1"))
+				break;
+		System.out.println("Inntak þarf að vera 0 eða 1");
+		read = reader.readLine();
+	}
+	int hotelPickup = Integer.parseInt(read);
 
 	Tour tour = new Tour(tc.getLatestId()+1, name, date, price, type, location, hotelPickup);
 	tc.addTour(tour);
@@ -182,7 +216,12 @@ public class Main {
 	tc.printAllTours();
 
 	System.out.print("Sláðu inn ID á tour: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	tc.deleteTourById(id);
     }
     public static void updateTour() throws IOException {
@@ -192,7 +231,12 @@ public class Main {
 	tc.printAllTours();
 
 	System.out.print("Sláðu inn ID á tour");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	Tour tour = tc.getTourById(id);
 	
 	System.out.println("Ath. ef þú villt halda eins og er, ekki slá inn neitt");
@@ -204,7 +248,12 @@ public class Main {
 	String date = reader.readLine();	
 
 	System.out.print("Sláðu inn verð (-1 til að halda eins og er): ");
-	Double price = Double.parseDouble(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	Double price = Double.parseDouble(read);
 
 	System.out.print("Sláðu inn nýja tegund af ferð: ");
 	String type = reader.readLine();
@@ -220,7 +269,12 @@ public class Main {
 	System.out.println("Get tour");
 	System.out.println("=============");
 	System.out.print("Sláðu inn ID á tour: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	Tour tour = tc.getTourById(id);
 	tc.printTour(tour);
 	reader.readLine();
@@ -230,8 +284,14 @@ public class Main {
 	System.out.println("=============");
 	rc.printAllRatings();
 	System.out.print("Sláðu inn ID á rating: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	rc.deleteRatingById(id);
+	System.out.println("Rating hefur verið eytt.");
 	reader.readLine();
     }
 
@@ -281,7 +341,12 @@ public class Main {
 	System.out.println("Get cost efficient tours");
 	System.out.println("=============");
 	System.out.println("Sláðu inn hámarksverð");
-	int price = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int price = Integer.parseInt(read);
 
 	Tour[] tours = tc.getCheapTours(price);
 
@@ -295,7 +360,12 @@ public class Main {
 	System.out.println("Get ratings by tour");
 	System.out.println("=============");
 	System.out.print("Sláðu inn id á tour: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 	Tour tour = tc.getTourById(id);
 	System.out.println("Tour: " + tour.getName().toUpperCase());
 	Rating[] ratings = rc.getRatingsByTour(tour);
@@ -315,7 +385,12 @@ public class Main {
 	}
 
 	System.out.print("Sláðu inn IDið þitt: ");
-	int id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int id = Integer.parseInt(read);
 
 	System.out.print("Leitaðu af túr til að bæta einkunn við: ");
 	String query = reader.readLine();
@@ -327,7 +402,12 @@ public class Main {
 	}
 
 	System.out.print("Sláðu inn ID á tour: ");
-	int tour_id = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int tour_id = Integer.parseInt(read);
 
 	System.out.print("Fyrirsögn: ");
 	String title = reader.readLine();
@@ -336,7 +416,12 @@ public class Main {
 	String feedback = reader.readLine();
 
 	System.out.print("Hversu margar stjörnur? (0-5)");
-	int stars = Integer.parseInt(reader.readLine());
+	read = reader.readLine();
+	while (!isNumeric(read)) {
+		System.out.println("Skrifaðu tölustaf.");
+		read = reader.readLine();
+	}
+	int stars = Integer.parseInt(read);
 
 	if (stars > 5 || stars < 0) {
 		while (stars > 5 || stars < 0) {
