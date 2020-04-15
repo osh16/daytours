@@ -64,6 +64,23 @@ public class BookingController {
         }
         c.close();
     }
+
+   public void setBooking(int id, String trip, String payment, String customer_name,int amount,String date){
+        try{
+            c.connect();
+            PreparedStatement p = c.conn.prepareStatement("insert into booking values(?,?,?,?,?,?)");
+            p.setInt(1, id);
+            p.setString(2, trip);
+            p.setString(3, payment);
+            p.setString(4, customer_name);
+            p.setInt(5, amount);
+            p.setString(6, date);
+            p.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        c.close();  
+    } 
     
     public void updateBooking(int id, String name){
         String query = "update booking set customer_name = " +name + " where id = "+id;
