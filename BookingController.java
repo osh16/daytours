@@ -7,7 +7,7 @@ public class BookingController {
     PassengerController pc = new PassengerController();
 
     public int getLatestId() {
-    	String query = "select * from booking where id = (select max(id) from tours)";
+    	String query = "select * from booking where id = (select max(id) from booking)";
     	Booking booking = getBooking(query);
     	return booking.getId();
     }
@@ -54,6 +54,7 @@ public class BookingController {
                             rs.getString(3),
                             rs.getInt(4),
                             rs.getInt(5)
+  
                         );
                     }
                 }
@@ -82,8 +83,10 @@ public class BookingController {
 			rs.getInt(1),
 			rs.getString(2),
 			rs.getString(3),
+                       
 			rs.getInt(4),
 			rs.getInt(5)
+                        
 		    );
 		    i++;
 		}
@@ -102,7 +105,7 @@ public class BookingController {
             PreparedStatement p = c.conn.prepareStatement("insert into booking values(?,?,?,?,?)");
             p.setInt(1, booking.getId());
 	    p.setString(2, booking.getPayment());
-            p.setString(3, booking.getDate());
+            p.setString(3, booking.getDate()); 
             p.setInt(4, booking.getPassengerId());
             p.setInt(5, booking.getTourId());
             p.executeUpdate();
@@ -181,5 +184,14 @@ public class BookingController {
 	    System.out.println(result);
         }
     }
+    
+    public static void main(String [] args){
+        BookingController bc = new BookingController();
+        
+        Booking booking = new Booking(bc.getLatestId()+1,"kreditkort","2020-04-01",5,2);
+        
+        bc.addBooking(booking);
+        bc.printAllBookings();
+        
+    }
 }
-
