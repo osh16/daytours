@@ -27,9 +27,9 @@ public class Main {
 	    Double.parseDouble(str);  
 	    return true;
 	  } catch(NumberFormatException e){  
-    return false;  
-  }  
-}
+	    return false;  
+	  }  
+    }
 
     public static void clearScreen() {  
 	System.out.print("\033[H\033[2J");  
@@ -54,6 +54,7 @@ public class Main {
 	System.out.println("3. Get ratings by tour");
 	System.out.println("4. Add rating");
 	System.out.println("5. Get tours with pickup");
+	System.out.println("6. Add booking");
 	System.out.println("q. Go back");
 	System.out.print("Sladu inn menu item: ");
     }
@@ -61,18 +62,15 @@ public class Main {
     public static void printStaffMenu() {
 	System.out.println("1.	Add booking");
 	System.out.println("2.	Delete booking");
-	System.out.println("3.	Update booking");
-	System.out.println("4.	Get booking");
-	System.out.println("5.	Add tour");
-	System.out.println("6.	Delete tour");
-	System.out.println("7.	Update tour");
-	System.out.println("8.	Get tour");
-	System.out.println("9.	Delete rating");
-	System.out.println("10.	Update rating");
-	System.out.println("11.	Get all tours");
-	System.out.println("12.	Get all ratings");
-	System.out.println("13.	Get all bookings");
-	System.out.println("14.	Get all passengers");
+	System.out.println("3.	Get booking");
+	System.out.println("4.	Add tour");
+	System.out.println("5.	Delete tour");
+	System.out.println("6.	Get tour");
+	System.out.println("7.	Delete rating");
+	System.out.println("8.	Get all tours");
+	System.out.println("9.	Get all ratings");
+	System.out.println("10.	Get all bookings");
+	System.out.println("11.	Get all passengers");
 	System.out.println("q.	Go back");
 	System.out.print("Sladu inn menu item: ");
     }
@@ -380,40 +378,31 @@ public class Main {
 		case "2":// delete booking
 		    deleteBooking();
 		    break;
-		case "3":// update booking
-		    updateBooking();
-		    break;
-		case "4":// get booking
+		case "3":// get booking
 		    getBooking();
 		    break;
-		case "5":// add tour
+		case "4":// add tour
 		    addTour();
 		    break;
-		case "6":// delete tour
+		case "5":// delete tour
 		    deleteTour();
 		    break;
-		case "7":// update tour
-		    updateTour();
-		    break;
-		case "8":// get tour
+		case "6":// get tour
 		    getTour();
 		    break;
-		case "9":// delete rating 
+		case "7":// delete rating 
 		    deleteRating();
 		    break;
-		case "10":// update rating 
-		    updateRating();
-		    break;
-		case "11":
+		case "8":
 		    getAllTours();
 		    break;
-		case "12":
+		case "9":
 		    getAllRatings();
 		    break;
-		case "13":
+		case "10":
 		    getAllBookings();
 		    break;
-		case "14":
+		case "11":
 		    getAllPassengers();
 		    break;
 		case "q":
@@ -448,6 +437,9 @@ public class Main {
 		    break;
 		case "5":// check if tour has pickup
 		    getTourWithPickup();
+		    break;
+		case "6":
+		    addBooking();
 		    break;
 		case "q":
 		case "Q":
