@@ -142,7 +142,7 @@ public class Main {
 	System.out.print("Nafn: ");
 	String name = reader.readLine();
 
-	System.out.print("Dagsetning: ");
+	System.out.print("Dagsetning (yyyy-mm-dd): ");
 	String date = reader.readLine();
 
 	System.out.print("Verð: ");
@@ -157,7 +157,7 @@ public class Main {
 	System.out.print("Er hotel pickup? (0 eða 1): ");
 	int hotelPickup = Integer.parseInt(reader.readLine());
 
-	Tour tour = new Tour(tc.getLatestId(), name, date, price, type, location, hotelPickup);
+	Tour tour = new Tour(tc.getLatestId()+1, name, date, price, type, location, hotelPickup);
 	tc.addTour(tour);
 	tc.printTour(tour);  
 	reader.readLine();
@@ -322,8 +322,16 @@ public class Main {
 	System.out.print("Feedback: ");
 	String feedback = reader.readLine();
 
-	System.out.print("Hversu margar stjörnur? ");
+	System.out.print("Hversu margar stjörnur? (0-5)");
 	int stars = Integer.parseInt(reader.readLine());
+
+	if (stars > 5 || stars < 0) {
+		while (stars > 5 || stars < 0) {
+			System.out.println("Stjörnur verða að vera á bilinu 0 til 5");
+			System.out.println("Hversu margar stjörnur? ");
+			stars = Integer.parseInt(reader.readLine());
+		}
+	}
 
 	rc.addRating(new Rating(rc.getLatestId()+1, title, getCurrentDate(), stars, feedback, tour_id, id));
 	System.out.println("Túrinn sem þú bættir inn:");

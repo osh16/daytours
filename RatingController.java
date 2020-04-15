@@ -227,4 +227,14 @@ public class RatingController {
 	    System.out.println(result);
 	}
     }
+
+    public static void main(String[] args) {
+    	RatingController rc = new RatingController();
+
+    	Rating rating = new Rating(rc.getLatestId()+1,"geggjad","2020-03-03",5,"rosa godar petsur",3,5);
+
+    	rc.addRating(rating);
+
+    	rc.printAllRatings();
+    }
 }

@@ -213,7 +213,7 @@ public class TourController {
     public void addTour(Tour tour) {
 		try {
 		    c.connect();
-		    PreparedStatement p = c.conn.prepareStatement("insert into tours values(?,?,?,?,?,?,?");
+		    PreparedStatement p = c.conn.prepareStatement("insert into tours values(?,?,?,?,?,?,?)");
 		    p.setInt(1, tour.getId());
 		    p.setString(2, tour.getName());
 		    p.setString(3, tour.getDate());
@@ -240,7 +240,8 @@ public class TourController {
     }
 
     public void updateTour(Tour tour, String newName, String newTourDate, double newPrice, String newType, String newLocation) {
-    	String query = "update tours set name = ?, set tour_date = ?, set price = ?, set tour_type = ?, set location = ?, where id = " + tour.getId();
+    	String query = "update tours set name = ?, set tour_date = ?, set price = ?, set tour_type = ?, set location = ? where id = " + tour.getId();
+    	// String query = "update tours set name = ? where id = " + tour.getId();
     	try {
     		c.connect();
     		PreparedStatement p = c.conn.prepareStatement(query);
@@ -283,6 +284,14 @@ public class TourController {
     // test
     public static void main(String[] args) {
     	TourController tc = new TourController();
-	System.out.println(tc.getTourByName("skaup i ke").getName());
+		// System.out.println(tc.getTourByName("skaup i ke").getName());
+
+		Tour tour = new Tour(tc.getLatestId()+1,"bibliuferd i landakotskirkju","2020-11-11",5000.0,"bibliuferd","reykjavik",0);
+		tc.addTour(tour);
+		// Tour tour = tc.getTourById(1);
+		// tc.updateTour(tour,"2","2222-03-22",5555,"2","");
+
+		//print(tour);
+		tc.printAllTours();
     }
 }
