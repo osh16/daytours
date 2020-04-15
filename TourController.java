@@ -37,6 +37,38 @@ public class TourController {
 	return count;
     }
 
+    public Tour[] searchTours(String search) {
+    	ResultSet rs = null;
+    	String query = "select * from tours where name like \"%" + search + "%\"";
+    	int toursLength = getCount(query);
+    	Tour[] tours = new Tour[toursLength];
+    	int i = 0;
+
+	    try {
+	    	c.connect();
+	    	rs = c.retrieve(query);
+
+	    	if (rs != null) {
+	    		while (rs.next()) {
+	    			tours[i] = new Tour(
+	    				rs.getInt(1),
+	    				rs.getString(2),
+	    				rs.getString(3),
+	    				rs.getDouble(4),
+	    				rs.getString(5),
+	    				rs.getString(6),
+	    				rs.getInt(7)
+	    			);
+	    			i++;
+	    		}
+	    	}
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    }
+
+    	return tours;
+    }
+
     public Tour[] getPickupTours() {
     	ResultSet rs = null;
     	String query = "select * from tours where hasPickup = 1";
@@ -200,6 +232,7 @@ public class TourController {
     	}
     }
 
+<<<<<<< HEAD
     public void updateTourById(int id, String newName, String newTourDate, double newPrice, String newLocation, String newType) {
     	String query = "update tours set name = ?, set tour_date = ?, set price = ?, "
     			 + "set tour_type = ?, set location = ?, where id = " + id;
