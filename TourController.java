@@ -103,12 +103,8 @@ public class TourController {
 
     public static void printTour(Tour tour) {
     	if (tour != null) {
-    		System.out.println(tour.getId());
-			System.out.println(tour.getName());
-			System.out.println(tour.getDate());
-			System.out.println(tour.getPrice());
-			System.out.println(tour.getType());
-			System.out.println(tour.getLocation());
+		String result = String.format("Nafn á tour: %s\nTegund ferðar: %s\nDagsetning: %s\nVerð: %s\nStaðsetning: %s\n", tour.getName(), tour.getType(), tour.getDate(), tour.getPrice(), tour.getLocation());
+	    System.out.println(result);
     	}
     }
 
@@ -139,7 +135,7 @@ public class TourController {
 		c.close(); // loka tengingu
 		return tour;
     }
-    
+
     public void addTour(Tour tour) {
 		try {
 		    c.connect();
@@ -156,7 +152,7 @@ public class TourController {
 		}
 		c.close();
     }
-
+    
     public void deleteTourById(int id) {
     	try {
     		c.connect();
