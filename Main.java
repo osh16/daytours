@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalDateTime;
 
+
 public class Main {
     static BookingController bc = new BookingController();
     static PassengerController pc = new PassengerController();
@@ -20,6 +21,15 @@ public class Main {
 	String strDate = dateFormat.format(date);
 	return strDate;
     }
+
+    public static boolean isNumeric(String str) { 
+	  try {  
+	    Double.parseDouble(str);  
+	    return true;
+	  } catch(NumberFormatException e){  
+    return false;  
+  }  
+}
 
     public static void clearScreen() {  
 	System.out.print("\033[H\033[2J");  
@@ -82,7 +92,7 @@ public class Main {
 	System.out.print("Sláðu inn greiðsluaðferð: ");
 	String payment = reader.readLine();
 	
-	bc.addBooking(new Booking(bc.getLatestId(), payment, getCurrentDate(), passengerId, tourId));
+	bc.addBooking(new Booking(bc.getLatestId()+1, payment, getCurrentDate(), passengerId, tourId));
 	
 	reader.readLine();
     }
@@ -133,6 +143,9 @@ public class Main {
 	int id = Integer.parseInt(reader.readLine());
 	Booking booking = bc.getBookingById(id);
 	bc.printBooking(booking);
+	if (booking == null) {
+		System.out.println("Engin bókun til á þessu ID");
+	}
 	reader.readLine();
     }
     public static void addTour() throws IOException {
@@ -156,10 +169,11 @@ public class Main {
 
 	System.out.print("Er hotel pickup? (0 eða 1): ");
 	int hotelPickup = Integer.parseInt(reader.readLine());
+	String pickup = reader.readLine();
 
 	Tour tour = new Tour(tc.getLatestId()+1, name, date, price, type, location, hotelPickup);
 	tc.addTour(tour);
-	tc.printTour(tour);  
+	tc.printTour(tour);
 	reader.readLine();
     }
     public static void deleteTour() throws IOException {

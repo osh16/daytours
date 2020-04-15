@@ -114,6 +114,7 @@ public class BookingController {
             e.printStackTrace();
         }
         c.close();
+        System.out.println("Bókun hefur verið bætt við.");
     }
 
     public void updateBooking(Booking booking, String newPayment, String newDate, int newPassenger, int newTour){
@@ -161,12 +162,13 @@ public class BookingController {
     public void deleteBooking(int id){
         try{
             c.connect();
-            String query ="delete from ratings where id = "+id;
+            String query ="delete from booking where id = "+id;
             PreparedStatement pst = c.conn.prepareStatement(query);
             pst.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
         }
+        System.out.println("Bókun " + id + " hefur verið eytt.");
     }
     
     public void printAllBookings() {
@@ -189,8 +191,10 @@ public class BookingController {
         BookingController bc = new BookingController();
         
         Booking booking = new Booking(bc.getLatestId()+1,"kreditkort","2020-04-01",5,2);
+
+        bc.deleteBooking(10);
         
-        bc.addBooking(booking);
+        // bc.addBooking(booking);
         bc.printAllBookings();
         
     }
