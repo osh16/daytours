@@ -280,18 +280,4 @@ public class TourController {
     		e.printStackTrace();
     	}
     }
-
-    // test
-    public static void main(String[] args) {
-    	TourController tc = new TourController();
-		// System.out.println(tc.getTourByName("skaup i ke").getName());
-
-		Tour tour = new Tour(tc.getLatestId()+1,"bibliuferd i landakotskirkju","2020-11-11",5000.0,"bibliuferd","reykjavik",0);
-		tc.addTour(tour);
-		// Tour tour = tc.getTourById(1);
-		// tc.updateTour(tour,"2","2222-03-22",5555,"2","");
-
-		//print(tour);
-		tc.printAllTours();
-    }
 }

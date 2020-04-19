@@ -186,16 +186,4 @@ public class BookingController {
 	    System.out.println(result);
         }
     }
-    
-    public static void main(String [] args){
-        BookingController bc = new BookingController();
-        
-        Booking booking = new Booking(bc.getLatestId()+1,"kreditkort","2020-04-01",5,2);
-
-        bc.deleteBooking(10);
-        
-        // bc.addBooking(booking);
-        bc.printAllBookings();
-        
-    }
 }
