@@ -1,5 +1,9 @@
 # daytours
 
+### Óskar Höskuldsson - osh16@hi.is
+### Viktor Sigbjörn Víðisson - vsv8@hi.is
+### Þorsteinn Sigurðsson - ths251@hi.is
+
 Til að sækja project:
 
 `$ git clone https://github.com/osh16/daytours.git`
